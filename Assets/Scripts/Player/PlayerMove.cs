@@ -41,6 +41,7 @@ public class PlayerMove : MonoBehaviour
             isJump = true;
         }
 
+
         yVelocity += gravitiy * Time.deltaTime;
         dir.y = yVelocity;
 
