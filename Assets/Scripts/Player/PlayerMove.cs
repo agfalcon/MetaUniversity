@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float moveSpeed = 7f;
+    public float currentSpeed = 7f; // 현재 속도
+    public float walkSpeed = 7f; // 걷기 속도
+    public float runSpeed = 7f; // 달리기 속도
+    public float stat = 5f; // 스태미너
+    float maxStat = 5f; // 최대 스태미너
+
+    public Image statImg; // 스태미너 게이지
+
     CharacterController cc;
+
     // 중력 변수
     float gravitiy = -20f;
     // 수직 속력 변수
@@ -13,6 +22,7 @@ public class PlayerMove : MonoBehaviour
     // 점프력 변수
     public float jumpPower = 3f;
     bool isJump = false;
+    bool isRun = false;
 
     void Start()
     {
@@ -25,12 +35,23 @@ public class PlayerMove : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         Vector3 dir = new Vector3(h, 0, v);
-        dir = dir.normalized;
+        //dir = dir.normalized;
 
         // 메인 카메라를 기준으로 방향 변경
         dir = Camera.main.transform.TransformDirection(dir);
 
-        if(isJump && cc.collisionFlags == CollisionFlags.CollidedBelow)
+        Jump();
+        Move();
+
+        yVelocity += gravitiy * Time.deltaTime;
+        dir.y = yVelocity;
+
+        cc.Move(dir * currentSpeed * Time.deltaTime);
+    }
+
+    void Jump()
+    {
+        if (isJump && cc.collisionFlags == CollisionFlags.CollidedBelow)
         {
             isJump = false;
         }
@@ -40,12 +61,32 @@ public class PlayerMove : MonoBehaviour
             yVelocity = jumpPower;
             isJump = true;
         }
+    }
 
+    void Move()
+    {
+        if (!isRun && Input.GetButton("LShift") && stat >= 0.5)
+        {
+            currentSpeed = runSpeed;
+            isRun = true;
+        }
+        else if(Input.GetButtonUp("LShift") || stat <= 0)
+        {
+            currentSpeed = walkSpeed;
+            isRun = false;
+        }
 
-        yVelocity += gravitiy * Time.deltaTime;
-        dir.y = yVelocity;
+        if (isRun)
+        {
+            stat -= Time.deltaTime;
+        }
+        else if (!isRun || stat <= maxStat)
+        {
+            stat += Time.deltaTime;
+        }
 
-        cc.Move(dir * moveSpeed * Time.deltaTime);
+        stat = Mathf.Clamp(stat, 0, maxStat);
+        statImg.fillAmount = stat / maxStat;
     }
 
 }
