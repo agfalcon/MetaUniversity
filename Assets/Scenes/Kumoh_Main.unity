@@ -4833,7 +4833,7 @@ GameObject:
   - component: {fileID: 277974735}
   - component: {fileID: 277974734}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Npc_Name_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4879,7 +4879,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE40\uB3D9\uD558\n"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 62744e9ea49a2da47ad05a032856ce98, type: 2}
   m_sharedMaterial: {fileID: 1140859182419679957, guid: 62744e9ea49a2da47ad05a032856ce98, type: 2}
@@ -12597,7 +12597,7 @@ GameObject:
   - component: {fileID: 806079984}
   - component: {fileID: 806079983}
   m_Layer: 0
-  m_Name: NPC_NAME
+  m_Name: Npc_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14211,27 +14211,17 @@ Transform:
   m_Father: {fileID: 156906355}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &963013120 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1204793632417466907, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+--- !u!114 &963013123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
   m_PrefabInstance: {fileID: 1204793632260038683}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &963013123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963013120}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5feaa8646eb60ed438dc9462da6051ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUI: {fileID: 264467952}
-  questUI: {fileID: 1437847833}
-  player: {fileID: 2115323832}
-  parent: {fileID: 2113476667}
 --- !u!1 &964224140
 GameObject:
   m_ObjectHideFlags: 0
@@ -20597,6 +20587,11 @@ MonoBehaviour:
   questUI: {fileID: 0}
   player: {fileID: 0}
   parent: {fileID: 0}
+  questInfoText: {fileID: 0}
+  nameText: {fileID: 0}
+  onPlayerEntered:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1438548813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22484,7 +22479,7 @@ GameObject:
   - component: {fileID: 1560498823}
   - component: {fileID: 1560498822}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Quest_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22530,7 +22525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE40\uB3D9\uD558\n"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 62744e9ea49a2da47ad05a032856ce98, type: 2}
   m_sharedMaterial: {fileID: 1140859182419679957, guid: 62744e9ea49a2da47ad05a032856ce98, type: 2}
@@ -29391,11 +29386,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111955866}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2113476667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1204793631269599264, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
-  m_PrefabInstance: {fileID: 1204793632260038683}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2114514090
 GameObject:
   m_ObjectHideFlags: 0
@@ -29596,6 +29586,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6109379982455596473, guid: fdd01d779927fe0498a0a02f262f4cd6, type: 3}
   m_PrefabInstance: {fileID: 6109379981919112613}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2115323834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6109379982455596422, guid: fdd01d779927fe0498a0a02f262f4cd6, type: 3}
+  m_PrefabInstance: {fileID: 6109379981919112613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115323832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c7587104f790043ae0ddc3918d5e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2116274959 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4970129236170962146, guid: 10135130034f9fc4591ea83b5d074beb, type: 3}
@@ -30639,18 +30640,78 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2113476672, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 2115323832}
-    - target: {fileID: 2113476672, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
       propertyPath: questUI
       value: 
       objectReference: {fileID: 1437847833}
-    - target: {fileID: 2113476672, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: nameText
+      value: 
+      objectReference: {fileID: 277974734}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
       propertyPath: playerUI
       value: 
       objectReference: {fileID: 264467952}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: questInfoText
+      value: 
+      objectReference: {fileID: 1560498822}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2115323834}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 963013123}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMoveSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StartQuestInfoRoutine
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMove, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: QuestController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 963013123, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+      propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1204793631269599264, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
       propertyPath: m_Name
       value: NPC_1
@@ -30699,16 +30760,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1204793632417466905, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1204793632417466907, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
-      propertyPath: m_Name
-      value: QuestTrigger
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2113476672, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3716367e0f0a94842a2262880f2315c8, type: 3}
 --- !u!224 &1337342937028165630
 RectTransform:

@@ -5,6 +5,19 @@ using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
+    private static PlayerMove instance = null;
+
+    public static PlayerMove Instance
+    {
+        get
+        {
+            if (instance == null)
+                return null;
+
+            return instance;
+        }
+    }
+
     public float currentSpeed = 7f; // 현재 속도
     public float walkSpeed = 7f; // 걷기 속도
     public float runSpeed = 7f; // 달리기 속도
@@ -24,8 +37,19 @@ public class PlayerMove : MonoBehaviour
     bool isJump = false;
     bool isRun = false;
 
-    void Start()
+    void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
         cc = GetComponent<CharacterController>();
     }
 
@@ -89,4 +113,8 @@ public class PlayerMove : MonoBehaviour
         statImg.fillAmount = stat / maxStat;
     }
 
+    public void SetMoveSpeed(float speed)
+    {
+        currentSpeed = speed;
+    }
 }
