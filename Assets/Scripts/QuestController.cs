@@ -7,74 +7,90 @@ using UnityEngine.Events;
 
 public class QuestController : MonoBehaviour
 {
-    public GameObject playerUI;
-    public GameObject questUI;
-    
-    public GameObject player;
-    public GameObject parent;
+    private static QuestController instance = null;
+    public static QuestController Instance 
+    { 
+        get 
+        {
+            if (instance == null)
+                return null;
 
-    public TMP_Text questInfoText;
-    public TMP_Text nameText;
-    string questText;
-
-    public UnityEvent onPlayerEntered;
-
-    bool isF = false;
-
-    float rotateSpeed = 5f;
-
-    void Start()
-    {
-
+            return instance;
+        } 
     }
 
-    // Update is called once per frame
+    public GameObject playerUI;
+    public GameObject questUI;
+    public TMP_Text questInfoText;
+    public TMP_Text nameText;
+
+    public bool isTalk = false;
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     void Update()
     {
 
     }
 
-    private void OnTriggerStay(Collider other)
+    public void NPCChatEnter(string npcName)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Vector3 lookatVec = player.transform.position - parent.transform.position;
-            parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, Quaternion.LookRotation(lookatVec), Time.deltaTime * rotateSpeed);
-        }
+        isTalk = true;
 
-        if (Input.GetKey(KeyCode.F) && !isF)
-        {
-            isF = true;
+        playerUI.SetActive(false);
+        questUI.SetActive(true);
 
-            playerUI.SetActive(false);
-            questUI.SetActive(true);
+        nameText.text = npcName;
+        PlayerMove.Instance.SetMoveSpeed(0);
 
-            nameText.text = "±èµ¿ÇÏ";
-            questInfoText.text = "";
-            
-            questText = "³ª´Â NPC ±èµ¿ÇÏ´Ù. ½Ã¹ß»õ³¢µé¾Æ";
-
-            onPlayerEntered.Invoke();
-        }
+        Debug.Log("NPCChatEnter");
     }
 
-
-    public void StartQuestInfoRoutine()
+    public void NPCChat(string questText)
     {
+
         StartCoroutine(QuestInfoRoutine(questText));
+        Debug.Log("NPCChat");
+    }
+
+    public void NPCChatExit()
+    {
+        nameText.text = "";
+        questInfoText.text = "";
+
+        playerUI.SetActive(true);
+        questUI.SetActive(false);
+
+        PlayerMove.Instance.SetMoveSpeed(PlayerMove.Instance.walkSpeed);
+
+        Debug.Log("NPCChatExit");
     }
 
     IEnumerator QuestInfoRoutine(string text)
     {
-        foreach(char letter in text.ToCharArray())
+        questInfoText.text = "";
+
+        foreach (char letter in text.ToCharArray())
         {
             questInfoText.text += letter;
             yield return new WaitForSeconds(0.1f);
         }
-        PlayerMove.Instance.SetMoveSpeed(PlayerMove.Instance.walkSpeed);
 
-        isF = false;
-        questInfoText.text = "";
+        isTalk = false;
+        PlayerMove.Instance.isF = false;
+
+        NPCChatExit();
     }
-
 }

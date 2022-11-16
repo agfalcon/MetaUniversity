@@ -37,6 +37,8 @@ public class PlayerMove : MonoBehaviour
     bool isJump = false;
     bool isRun = false;
 
+    public bool isF = false;
+
     void Awake()
     {
         if(instance == null)
