@@ -9,11 +9,11 @@ public class NPCMove : MonoBehaviour
     public Animator anim;
 
     CharacterController cc;
-    Vector3 destination;
+    Vector3 dir;
 
     public float currentSpeed = 0f;
-    public float walkSpeed = 0.1f;
-    public float runSpeed = 0.07f;
+    public float walkSpeed = 1f;
+    public float runSpeed = 1.5f;
 
     public Transform[] movePose;
 
@@ -36,7 +36,8 @@ public class NPCMove : MonoBehaviour
         else
             NPCStop();
 
-        cc.Move(destination * Time.deltaTime * currentSpeed);
+        dir.Normalize();
+        cc.Move(dir * Time.deltaTime * currentSpeed);
     }
 
     void NPCMoveToMovePose()
@@ -45,11 +46,11 @@ public class NPCMove : MonoBehaviour
 
         if (Vector3.Distance(transform.position, movePose[1].position) > 0.5f && !isReverse)
         {
-            destination = movePose[1].position - transform.position;
+            dir = movePose[1].position - transform.position;
         }
-        else if(Vector3.Distance(transform.position, movePose[0].position) > 0.5f && isReverse)
+        else if (Vector3.Distance(transform.position, movePose[0].position) > 0.5f && isReverse)
         {
-            destination = movePose[0].position - transform.position;
+            dir = movePose[0].position - transform.position;
         }
 
     }

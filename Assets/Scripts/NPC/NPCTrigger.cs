@@ -26,16 +26,22 @@ public class NPCTrigger : MonoBehaviour
 
     void Update()
     {
-        
+        PlayerExitTrigger();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            npcMove.isMoving = false;
+            npcMove.anim.SetBool("isWalk", false);
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            npcMove.isMoving = false;
-            npcMove.anim.SetBool("isWalk", false);
-
             Vector3 lookatVec = player.transform.position - parent.transform.position;
             parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, Quaternion.LookRotation(lookatVec), Time.deltaTime * rotateSpeed);
         }
@@ -55,10 +61,13 @@ public class NPCTrigger : MonoBehaviour
         {
             npcMove.isMoving = true;
             npcMove.anim.SetBool("isWalk", true);
-
-            // Exit하면 한 번만 수행되고 함수 종료되니까 Update방식으로 돌아가도록 해야함 (수정)
-            parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, Quaternion.LookRotation(npcFirstDir), Time.deltaTime * rotateSpeed);
         }
+    }
+
+    void PlayerExitTrigger()
+    {
+        if(npcMove.isMoving)
+            parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, Quaternion.LookRotation(npcFirstDir), Time.deltaTime * rotateSpeed);
     }
 
 }
