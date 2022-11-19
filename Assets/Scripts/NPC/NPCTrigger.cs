@@ -13,26 +13,32 @@ public class NPCTrigger : MonoBehaviour
     public GameObject parent;
 
     public string npcName;
-    public string questText;
-
-    public float rotateSpeed = 5f;
-
-    Vector3 npcFirstDir;
+    public string[] npcTalk;
+    string curNpcTalk;
+    int npcTalkIndex = 0;
+    bool isTriggerInPlayer = false;
 
     void Awake()
     {
-        npcFirstDir = npcMove.movePose[1].position - npcMove.movePose[0].position;
     }
 
     void Update()
     {
-        PlayerExitTrigger();
+        if (isTriggerInPlayer)
+        {
+            RotationNPCtoPlayer();
+            FirstTalkWithPlayer();
+            TalkSkipOrNext();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            isTriggerInPlayer = true;
+
+            npcTalkIndex = 0;
             npcMove.isMoving = false;
             npcMove.anim.SetBool("isWalk", false);
         }
@@ -42,16 +48,7 @@ public class NPCTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Vector3 lookatVec = player.transform.position - parent.transform.position;
-            parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, Quaternion.LookRotation(lookatVec), Time.deltaTime * rotateSpeed);
-        }
-
-        if (Input.GetKey(KeyCode.F) && !PlayerMove.Instance.isF && !QuestController.Instance.isTalk)
-        {
-            PlayerMove.Instance.isF = true;
-
-            QuestController.Instance.NPCChatEnter(npcName);
-            QuestController.Instance.NPCChat(questText);
+            isTriggerInPlayer = true;
         }
     }
 
@@ -59,15 +56,55 @@ public class NPCTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            isTriggerInPlayer = false;
+
             npcMove.isMoving = true;
             npcMove.anim.SetBool("isWalk", true);
         }
     }
 
-    void PlayerExitTrigger()
+
+    void RotationNPCtoPlayer()
     {
-        if(npcMove.isMoving)
-            parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, Quaternion.LookRotation(npcFirstDir), Time.deltaTime * rotateSpeed);
+        Vector3 lookatVec = player.transform.position - parent.transform.position;
+        parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, Quaternion.LookRotation(lookatVec), Time.deltaTime * npcMove.rotateSpeed);
+    }
+
+    void FirstTalkWithPlayer()
+    {
+        if (Input.GetKey(KeyCode.F) && !PlayerMove.Instance.isF && !TalkManager.Instance.isTalk)
+        {
+            PlayerMove.Instance.isF = true;
+            TalkManager.Instance.NPCChatEnter(npcName);
+
+            curNpcTalk = npcTalk[npcTalkIndex];
+            TalkManager.Instance.NPCChat(curNpcTalk);
+            npcTalkIndex++;
+        }
+    }
+
+    void TalkSkipOrNext()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && TalkManager.Instance.isCor) // 대화 스킵
+        {
+            TalkManager.Instance.QuickStopChat(curNpcTalk);
+            print("Chat Skip");
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && PlayerMove.Instance.isF && TalkManager.Instance.isTalk && !TalkManager.Instance.isCor) // NPC의 대화 한 문장이 출력 된 후 다음 문장으로 넘어가기 위함
+        {
+            if (npcTalkIndex >= npcTalk.Length)
+            {
+                print("Chat End");
+                TalkManager.Instance.NPCChatExit();
+                npcTalkIndex = 0;
+                return;
+            }
+            print("next Chat");
+
+            curNpcTalk = npcTalk[npcTalkIndex];
+            TalkManager.Instance.NPCChat(curNpcTalk);
+            npcTalkIndex++;
+        }
     }
 
 }

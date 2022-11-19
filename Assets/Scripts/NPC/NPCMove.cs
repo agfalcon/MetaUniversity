@@ -7,18 +7,20 @@ public class NPCMove : MonoBehaviour
 {
     [HideInInspector]
     public Animator anim;
+    [HideInInspector]
+    public Vector3 dir;
 
     CharacterController cc;
-    Vector3 dir;
 
     public float currentSpeed = 0f;
     public float walkSpeed = 1f;
     public float runSpeed = 1.5f;
+    public float rotateSpeed = 5f;
 
     public Transform[] movePose;
 
     public bool isMoving = true;
-    bool isReverse = false;
+    public bool isReverse = false;
 
     void Awake()
     {
@@ -28,7 +30,6 @@ public class NPCMove : MonoBehaviour
         anim.SetBool("isWalk", true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(isMoving)
@@ -43,14 +44,37 @@ public class NPCMove : MonoBehaviour
     void NPCMoveToMovePose()
     {
         currentSpeed = walkSpeed;
+        float distance;
 
-        if (Vector3.Distance(transform.position, movePose[1].position) > 0.5f && !isReverse)
+        if(!isReverse)
         {
-            dir = movePose[1].position - transform.position;
+            distance = Vector3.Distance(transform.position, movePose[1].position);
+
+            if(distance > 0.5f)
+            {
+                dir = movePose[1].position - transform.position;
+                if (0.5 <= distance && distance <= 1)
+                    isReverse = true;
+            }
         }
-        else if (Vector3.Distance(transform.position, movePose[0].position) > 0.5f && isReverse)
+        else
         {
-            dir = movePose[0].position - transform.position;
+            distance = Vector3.Distance(transform.position, movePose[0].position);
+
+            if (distance > 0.5f)
+            {
+                dir = movePose[0].position - transform.position;
+                if (0.5 <= distance && distance <= 1)
+                    isReverse = false;
+            }
+        }
+
+        if (isMoving)
+        {
+            if (isReverse)
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotateSpeed);
+            else
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotateSpeed);
         }
 
     }

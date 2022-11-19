@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4734,7 +4734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273430248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.35, y: 1.39, z: 4.74}
+  m_LocalPosition: {x: 33.35, y: 0.4, z: 4.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6808,7 +6808,7 @@ GameObject:
   - component: {fileID: 404338244}
   - component: {fileID: 404338243}
   m_Layer: 0
-  m_Name: QuestController
+  m_Name: TalkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6828,9 +6828,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerUI: {fileID: 264467952}
   questUI: {fileID: 1437847833}
-  questInfoText: {fileID: 1560498822}
+  dropDownImg: {fileID: 1753065567}
+  npcTalkText: {fileID: 1560498822}
   nameText: {fileID: 277974734}
   isTalk: 0
+  isCor: 0
 --- !u!4 &404338244
 Transform:
   m_ObjectHideFlags: 0
@@ -8612,7 +8614,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533753827}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.35, y: 1.39, z: 48.54}
+  m_LocalPosition: {x: 33.35, y: 0.4, z: 48.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20729,6 +20731,7 @@ RectTransform:
   m_Children:
   - {fileID: 1758101070}
   - {fileID: 806079982}
+  - {fileID: 1753065568}
   m_Father: {fileID: 886146621}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21553,6 +21556,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 211715232, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
+      propertyPath: m_Name
+      value: NPCTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 1472542378, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
       propertyPath: player
       value: 
@@ -21561,6 +21568,32 @@ PrefabInstance:
       propertyPath: npcMove
       value: 
       objectReference: {fileID: 1780328947}
+    - target: {fileID: 1472542378, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
+      propertyPath: questText
+      value: "\uB098\uB294 NPC \uAE40\uB3D9\uD558\uB2E4.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472542378, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
+      propertyPath: npcTalk.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472542378, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
+      propertyPath: npcTalk.Array.data[0]
+      value: "\uC548\uB155, \uB09C NPC \uAE40\uB3D9\uD558\uB77C\uACE0\uD574 \uB9CC\uB098\uC11C
+        \uBC18\uAC00\uC6CC."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472542378, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
+      propertyPath: npcTalk.Array.data[1]
+      value: "\uB098\uB294 \uAE08\uC624\uACF5\uB300 \uCEF4\uD4E8\uD130\uACF5\uD559\uACFC
+        18\uD559\uBC88\uC774\uC57C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472542378, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
+      propertyPath: npcTalk.Array.data[2]
+      value: "\uAC1C \uC2DC\uBC1C\uB828\uC544 \uAE30\uC5B5\uD574\uB77C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472542378, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
+      propertyPath: npcTalk.Array.data[3]
+      value: "\uC139\uC2A4\uC139\uC2A4\uBCF4\uC9C0\uBCF4\uC9C0"
+      objectReference: {fileID: 0}
     - target: {fileID: 1472542378, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
       propertyPath: onPlayerEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -21599,7 +21632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6252356961376966267, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.412
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6252356961376966267, guid: 15c843790f71d8b40a44791257bdc28e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22778,7 +22811,7 @@ GameObject:
   - component: {fileID: 1560498823}
   - component: {fileID: 1560498822}
   m_Layer: 0
-  m_Name: Quest_Text
+  m_Name: Npc_Talk_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25615,6 +25648,103 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745431023}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1753065567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1753065568}
+  - component: {fileID: 1753065570}
+  - component: {fileID: 1753065569}
+  - component: {fileID: 1753065571}
+  m_Layer: 0
+  m_Name: DropDownImg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1753065568
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753065567}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1437847834}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -150, y: 80}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &1753065569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753065567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1753065570
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753065567}
+  m_CullTransparentMesh: 1
+--- !u!95 &1753065571
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753065567}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e29b479f59e83784ea53628bac059c98, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1758101069
 GameObject:
   m_ObjectHideFlags: 0
@@ -25627,7 +25757,7 @@ GameObject:
   - component: {fileID: 1758101072}
   - component: {fileID: 1758101071}
   m_Layer: 0
-  m_Name: Quest_Info
+  m_Name: Npc_Talk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34574,8 +34704,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 58060395}
     - target: {fileID: 6109379982455596422, guid: fdd01d779927fe0498a0a02f262f4cd6, type: 3}
+      propertyPath: runSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109379982455596422, guid: fdd01d779927fe0498a0a02f262f4cd6, type: 3}
       propertyPath: jumpPower
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109379982455596422, guid: fdd01d779927fe0498a0a02f262f4cd6, type: 3}
+      propertyPath: walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109379982455596422, guid: fdd01d779927fe0498a0a02f262f4cd6, type: 3}
+      propertyPath: currentSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6109379982455596473, guid: fdd01d779927fe0498a0a02f262f4cd6, type: 3}
       propertyPath: m_Name
