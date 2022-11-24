@@ -12,6 +12,7 @@ public class NPCMove : MonoBehaviour
 
     CharacterController cc;
 
+    public int npcId;
     public float currentSpeed = 0f;
     public float walkSpeed = 1f;
     public float runSpeed = 1.5f;

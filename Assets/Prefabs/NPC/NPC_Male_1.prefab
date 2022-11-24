@@ -331,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
+  npcId: 2000
   currentSpeed: 0
   walkSpeed: 1
   runSpeed: 0.07
