@@ -38,7 +38,6 @@ public class PlayerMove : MonoBehaviour
     bool isRun = false;
 
     public bool isF = false; // 플레이어가 상호작용 중인지
-    public bool isQuesting = false;
 
     void Awake()
     {

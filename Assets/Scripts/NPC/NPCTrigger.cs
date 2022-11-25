@@ -11,13 +11,13 @@ public class NPCTrigger : MonoBehaviour
     public NPCMove npcMove;
     public GameObject player;
     public GameObject parent;
+    public GameObject questionMark;
+    public GameObject exclaimMark;
 
     // NPC 이름 및 기본 대화
     public string npcName;
     public string[] npcTalk;
 
-    public GameObject questBtn;
-    public TMP_Text questBtnText;
     // NPC 퀘스트 대화(한 배열에 한 퀘스트 씩, 첫 문장은 퀘스트 이름으로 쓸 것)
     public string[] npcQuestTalk;
     
@@ -26,15 +26,12 @@ public class NPCTrigger : MonoBehaviour
     [HideInInspector]
     public int npcQuestIndex = 0;
     public Dictionary<int, string[]> npcQuestList;
-    string questName;
 
-    string curNpcTalk;
-    int npcTalkIndex = 0;
     bool isTriggerInPlayer = false;
 
     void Awake()
     {
-        SetQuestList();
+        FirstSetting();
     }
 
     void Update()
@@ -43,6 +40,15 @@ public class NPCTrigger : MonoBehaviour
         {
             RotationNPCtoPlayer();
             FirstTalkWithPlayer();
+        }
+
+    }
+
+    void FirstSetting()
+    {
+        if(npcQuestTalk != null)
+        {
+            SetQuestList();
         }
     }
 
@@ -54,9 +60,10 @@ public class NPCTrigger : MonoBehaviour
         {
             string[] quest = q.Split("//");
             npcQuestList.Add(npcQuestIndex, quest);
-
             npcQuestIndex++;
         }
+
+        questionMark.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,8 +71,6 @@ public class NPCTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isTriggerInPlayer = true;
-
-            npcTalkIndex = 0;
             npcMove.isMoving = false;
             npcMove.anim.SetBool("isWalk", false);
         }
@@ -84,7 +89,6 @@ public class NPCTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isTriggerInPlayer = false;
-
             npcMove.isMoving = true;
             npcMove.anim.SetBool("isWalk", true);
         }
@@ -102,6 +106,7 @@ public class NPCTrigger : MonoBehaviour
         if (Input.GetKey(KeyCode.F) && !PlayerMove.Instance.isF && !TalkManager.Instance.isTalk)
         {
             TalkManager.Instance.FirstInteractWithPlayer(this);
+            TalkManager.Instance.TalkOrQuest(0);
         }
     }
 

@@ -23,6 +23,7 @@ public class TalkManager : MonoBehaviour
     public GameObject questUI;
     public GameObject dropDownImg;
     public GameObject questBtn;
+    public GameObject questInteraction;
     public TMP_Text npcTalkText;
     public TMP_Text nameText;
     public TMP_Text questBtnText;
@@ -40,10 +41,12 @@ public class TalkManager : MonoBehaviour
     int npcTalk_OR_Quest_Index = 0;
 
     int npcQuestIndex = 0;
-    [HideInInspector]
-    public int currentQuestIndex = 0;
+    int currentQuestIndex = 0;
     Dictionary<int, string[]> npcQuestList;
     string questName;
+
+    bool isQuestTalk = false;
+    bool isQuestTalkLast = false;
 
     NPCTrigger npc;
 
@@ -66,13 +69,26 @@ public class TalkManager : MonoBehaviour
         if (!isTalk)
             return;
 
+        if (isQuestTalkLast)
+        {
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                QuestManager.Instance.QuestEnter(npc);
+                QuestTalkExit();
+            }
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                QuestTalkExit();
+            }
+        }
+
         if (onQuestBtn)
         {
             if (Input.GetKeyDown(KeyCode.Y))
             {
                 questBtn.SetActive(false);
                 onQuestBtn = false;
-                QuestManager.Instance.QuestEnter();
+                QuestTalkEnter();
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -131,13 +147,6 @@ public class TalkManager : MonoBehaviour
     public void FirstInteractWithPlayer(NPCTrigger npcTrigger)
     {
         npc = npcTrigger;
-        FirstSetNpcInfo(npc);
-        TalkOrQuest(0);
-    }
-
-    void FirstSetNpcInfo(NPCTrigger npcTrigger)
-    {
-        npc = npcTrigger;
 
         npcName = npc.npcName;
         npcTalk = npc.npcTalk;
@@ -182,28 +191,46 @@ public class TalkManager : MonoBehaviour
         {
             if (npcTalk_OR_Quest_Index >= npcTalk_OR_Quest_List.Length) // 마지막 대화라면
             {
-                if (currentQuestIndex < npcQuestIndex && !PlayerMove.Instance.isQuesting) // 수행할 수 있는 퀘스트가 존재하고 현재 플레이어가 다른 퀘스트를 하고 있지 않은 경우
+                if (currentQuestIndex < npcQuestIndex && !QuestManager.Instance.isQuesting && !isQuestTalk) // 수행할 수 있는 퀘스트가 존재하고 현재 플레이어가 다른 퀘스트를 하고 있지 않은 경우
                 {
                     questName = npcQuestList[currentQuestIndex][0];
                     questBtn.SetActive(true);
                     onQuestBtn = true;
                     questBtnText.text = questName + "(Y)";
 
-                    //QuestManager.Instance.QuestEnter();
                 }
-                else // 퀘스트가 없거나 다른 퀘스트를 수행중인 경우
+                else if (isQuestTalk) // 퀘스트에 대한 이야기가 마지막인 경우
                 {
-                    print("Chat End");
+                    isQuestTalkLast = true;
+                    questInteraction.SetActive(true);
+                }
+                else // 기본 NPC의 대화가 마지막인 경우
+                {
                     NPCChatExit();
                 }
                 return;
             }
-            print("next Chat");
 
-            curNpcTalk_OR_Quest_Text = npcTalk[npcTalk_OR_Quest_Index];
+            curNpcTalk_OR_Quest_Text = npcTalk_OR_Quest_List[npcTalk_OR_Quest_Index];
             NPCChat(curNpcTalk_OR_Quest_Text);
             npcTalk_OR_Quest_Index++;
         }
+    }
+
+    void QuestTalkEnter()
+    {
+        isQuestTalk = true;
+
+        NPCChatExit();
+        TalkOrQuest(1);
+    }
+
+    void QuestTalkExit()
+    {
+        isQuestTalk = false;
+        isQuestTalkLast = false;
+        questInteraction.SetActive(false);
+        NPCChatExit();
     }
 
     public void QuickStopChat(string npcTalk)
