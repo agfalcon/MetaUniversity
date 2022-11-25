@@ -32,10 +32,12 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void QuestEnter(string questName, string[] questList, NPCTrigger npcTrigger)
+    public void QuestEnter()
     {
         isQuesting = true;
         PlayerMove.Instance.isQuesting = true;
+        TalkManager.Instance.NPCChatExit();
+        TalkManager.Instance.TalkOrQuest(1);
     }
 
     public void QuestIng()
