@@ -61,13 +61,18 @@ MonoBehaviour:
   npcMove: {fileID: 1157983520}
   player: {fileID: 0}
   parent: {fileID: 733099619837945652}
+  questionMark: {fileID: 2576157898034064586}
+  exclaimMark: {fileID: 5837048317476045651}
   npcName: "\uAE40\uB3D9\uD558"
   npcTalk:
   - "\uC548\uB155, \uB09C NPC \uAE40\uB3D9\uD558\uB77C\uACE0\uD574 \uB9CC\uB098\uC11C
     \uBC18\uAC00\uC6CC."
   - "\uB098\uB294 \uAE08\uC624\uACF5\uB300 \uCEF4\uD4E8\uD130\uACF5\uD559\uACFC 18\uD559\uBC88\uC774\uC57C"
   - "\uAC1C \uC2DC\uBC1C\uB828\uC544 \uAE30\uC5B5\uD574\uB77C"
-  - "\uC139\uC2A4\uC139\uC2A4\uBCF4\uC9C0\uBCF4\uC9C0"
+  - 
+  npcQuestTalk: []
+  currentQuestIndex: 0
+  npcQuestIndex: 0
 --- !u!1 &925838426
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,8 +101,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6506166716480084457}
   - {fileID: 2921579799012144752}
+  - {fileID: 6506166716480084457}
   m_Father: {fileID: 733099619838180180}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -118,7 +123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2921579799350502584, guid: 8775e01c56f5feb46828ec5c939c1fec, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2921579799350502584, guid: 8775e01c56f5feb46828ec5c939c1fec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -162,6 +167,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8775e01c56f5feb46828ec5c939c1fec, type: 3}
+--- !u!1 &2576157898034064586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2576157898636672514, guid: 8775e01c56f5feb46828ec5c939c1fec, type: 3}
+  m_PrefabInstance: {fileID: 1009586888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2921579799012144752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2921579799350502584, guid: 8775e01c56f5feb46828ec5c939c1fec, type: 3}
@@ -178,9 +188,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: exclamation mark
       objectReference: {fileID: 0}
+    - target: {fileID: 5837048317004374160, guid: 844c5f69068887440a95ba838da7d2de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6506166716012575274, guid: 844c5f69068887440a95ba838da7d2de, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6506166716012575274, guid: 844c5f69068887440a95ba838da7d2de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -228,6 +242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 844c5f69068887440a95ba838da7d2de, type: 3}
+--- !u!1 &5837048317476045651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5837048317004374160, guid: 844c5f69068887440a95ba838da7d2de, type: 3}
+  m_PrefabInstance: {fileID: 1680204739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6506166716480084457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6506166716012575274, guid: 844c5f69068887440a95ba838da7d2de, type: 3}
@@ -287,6 +306,10 @@ PrefabInstance:
     - target: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c, type: 3}
       propertyPath: m_Name
       value: NPC_Zombie_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c, type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 856601670124978856, guid: b14953694d54eea4eb66f453e525024c, type: 3}
       propertyPath: m_Controller

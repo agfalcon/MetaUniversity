@@ -11,15 +11,27 @@ public class NPCTrigger : MonoBehaviour
     public NPCMove npcMove;
     public GameObject player;
     public GameObject parent;
+    public GameObject questionMark;
+    public GameObject exclaimMark;
 
+    // NPC 이름 및 기본 대화
     public string npcName;
     public string[] npcTalk;
-    string curNpcTalk;
-    int npcTalkIndex = 0;
+
+    // NPC 퀘스트 대화(한 배열에 한 퀘스트 씩, 첫 문장은 퀘스트 이름으로 쓸 것)
+    public string[] npcQuestTalk;
+    
+    [HideInInspector]
+    public int currentQuestIndex = 0;
+    [HideInInspector]
+    public int npcQuestIndex = 0;
+    public Dictionary<int, string[]> npcQuestList;
+
     bool isTriggerInPlayer = false;
 
     void Awake()
     {
+        FirstSetting();
     }
 
     void Update()
@@ -28,8 +40,30 @@ public class NPCTrigger : MonoBehaviour
         {
             RotationNPCtoPlayer();
             FirstTalkWithPlayer();
-            TalkSkipOrNext();
         }
+
+    }
+
+    void FirstSetting()
+    {
+        if(npcQuestTalk != null)
+        {
+            SetQuestList();
+        }
+    }
+
+    void SetQuestList()
+    {
+        npcQuestList = new Dictionary<int, string[]>();
+
+        foreach(string q in npcQuestTalk )
+        {
+            string[] quest = q.Split("//");
+            npcQuestList.Add(npcQuestIndex, quest);
+            npcQuestIndex++;
+        }
+
+        questionMark.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,8 +71,6 @@ public class NPCTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isTriggerInPlayer = true;
-
-            npcTalkIndex = 0;
             npcMove.isMoving = false;
             npcMove.anim.SetBool("isWalk", false);
         }
@@ -57,7 +89,6 @@ public class NPCTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isTriggerInPlayer = false;
-
             npcMove.isMoving = true;
             npcMove.anim.SetBool("isWalk", true);
         }
@@ -74,37 +105,14 @@ public class NPCTrigger : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.F) && !PlayerMove.Instance.isF && !TalkManager.Instance.isTalk)
         {
-            PlayerMove.Instance.isF = true;
-            TalkManager.Instance.NPCChatEnter(npcName);
-
-            curNpcTalk = npcTalk[npcTalkIndex];
-            TalkManager.Instance.NPCChat(curNpcTalk);
-            npcTalkIndex++;
+            TalkManager.Instance.FirstInteractWithPlayer(this);
+            TalkManager.Instance.TalkOrQuest(0);
         }
     }
 
-    void TalkSkipOrNext()
+    public void OnClickQuestBtn()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && TalkManager.Instance.isCor) // 대화 스킵
-        {
-            TalkManager.Instance.QuickStopChat(curNpcTalk);
-            print("Chat Skip");
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && PlayerMove.Instance.isF && TalkManager.Instance.isTalk && !TalkManager.Instance.isCor) // NPC의 대화 한 문장이 출력 된 후 다음 문장으로 넘어가기 위함
-        {
-            if (npcTalkIndex >= npcTalk.Length)
-            {
-                print("Chat End");
-                TalkManager.Instance.NPCChatExit();
-                npcTalkIndex = 0;
-                return;
-            }
-            print("next Chat");
-
-            curNpcTalk = npcTalk[npcTalkIndex];
-            TalkManager.Instance.NPCChat(curNpcTalk);
-            npcTalkIndex++;
-        }
+        print("hi Im quest");
     }
 
 }

@@ -37,7 +37,7 @@ public class PlayerMove : MonoBehaviour
     bool isJump = false;
     bool isRun = false;
 
-    public bool isF = false;
+    public bool isF = false; // 플레이어가 상호작용 중인지
 
     void Awake()
     {
