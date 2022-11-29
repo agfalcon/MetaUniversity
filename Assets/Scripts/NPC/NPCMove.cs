@@ -20,6 +20,7 @@ public class NPCMove : MonoBehaviour
 
     public Transform[] movePose;
 
+    public bool moveStopAlways;
     public bool isMoving = true;
     public bool isReverse = false;
 
@@ -28,18 +29,43 @@ public class NPCMove : MonoBehaviour
         anim = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
 
-        anim.SetBool("isWalk", true);
+        if(isMoving && !moveStopAlways)
+            anim.SetBool("isWalk", true);
+        else if(movePose.Length > 0 && !moveStopAlways)
+        {
+            isMoving = true;
+            anim.SetBool("isWalk", true);
+            SetMovePoseY();
+        }
+
     }
 
     void Update()
     {
+        if (moveStopAlways)
+            return;
+
         if(isMoving)
+        {
             NPCMoveToMovePose();
+            anim.SetBool("isWalk", true);
+        }
         else
+        {
             NPCStop();
+            anim.SetBool("isWalk", false);
+        }
 
         dir.Normalize();
         cc.Move(dir * Time.deltaTime * currentSpeed);
+    }
+
+    void SetMovePoseY()
+    {
+        foreach(var pos in movePose)
+        {
+            pos.position = new Vector3(pos.position.x, transform.position.y, pos.position.z);
+        }
     }
 
     void NPCMoveToMovePose()

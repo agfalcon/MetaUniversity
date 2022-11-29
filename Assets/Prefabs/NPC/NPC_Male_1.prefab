@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1497819850}
-  - component: {fileID: 1497819852}
+  - component: {fileID: 5783158609674614374}
   - component: {fileID: 1497819851}
   m_Layer: 0
   m_Name: NPCTrigger
@@ -66,8 +66,8 @@ Transform:
   m_Father: {fileID: 3148876539554544504}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1497819852
-BoxCollider:
+--- !u!135 &5783158609674614374
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -77,8 +77,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12, y: 2, z: 12}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Radius: 6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1497819851
 MonoBehaviour:
   m_ObjectHideFlags: 0

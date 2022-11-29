@@ -46,7 +46,7 @@ public class NPCTrigger : MonoBehaviour
 
     void FirstSetting()
     {
-        if(npcQuestTalk != null)
+        if(npcQuestTalk.Length != 0)
         {
             SetQuestList();
         }
@@ -72,7 +72,6 @@ public class NPCTrigger : MonoBehaviour
         {
             isTriggerInPlayer = true;
             npcMove.isMoving = false;
-            npcMove.anim.SetBool("isWalk", false);
         }
     }
 
@@ -90,7 +89,6 @@ public class NPCTrigger : MonoBehaviour
         {
             isTriggerInPlayer = false;
             npcMove.isMoving = true;
-            npcMove.anim.SetBool("isWalk", true);
         }
     }
 
@@ -98,7 +96,9 @@ public class NPCTrigger : MonoBehaviour
     void RotationNPCtoPlayer()
     {
         Vector3 lookatVec = player.transform.position - parent.transform.position;
-        parent.transform.rotation = Quaternion.Lerp(parent.transform.rotation, Quaternion.LookRotation(lookatVec), Time.deltaTime * npcMove.rotateSpeed);
+        parent.transform.rotation = Quaternion.Slerp(parent.transform.rotation, Quaternion.LookRotation(lookatVec), Time.deltaTime * npcMove.rotateSpeed);
+        /*Vector3 test = new Vector3(player.transform.position.x, parent.transform.position.y, player.transform.position.z);
+        parent.transform.LookAt(test);*/
     }
 
     void FirstTalkWithPlayer()
@@ -108,11 +108,6 @@ public class NPCTrigger : MonoBehaviour
             TalkManager.Instance.FirstInteractWithPlayer(this);
             TalkManager.Instance.TalkOrQuest(0);
         }
-    }
-
-    public void OnClickQuestBtn()
-    {
-        print("hi Im quest");
     }
 
 }
