@@ -16,7 +16,7 @@ public class CharacterUIManager : MonoBehaviour
     void Start()
     {
         timer = 0.0f;
-        waitingTime = 0.5f;
+        waitingTime = 0.2f;
     }
 
     // Update is called once per frame
