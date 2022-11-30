@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class NPCTrigger : MonoBehaviour
 {
@@ -27,6 +23,9 @@ public class NPCTrigger : MonoBehaviour
     public int npcQuestIndex = 0;
     public Dictionary<int, string[]> npcQuestList;
 
+    public string[] npcQuestDesc;
+    public Dictionary<int, string[]> npcQuestDescList;
+
     bool isTriggerInPlayer = false;
 
     void Awake()
@@ -46,7 +45,7 @@ public class NPCTrigger : MonoBehaviour
 
     void FirstSetting()
     {
-        if(npcQuestTalk.Length != 0)
+        if(npcQuestTalk.Length != 0 && npcQuestDesc.Length != 0)
         {
             SetQuestList();
         }
@@ -55,11 +54,15 @@ public class NPCTrigger : MonoBehaviour
     void SetQuestList()
     {
         npcQuestList = new Dictionary<int, string[]>();
+        npcQuestDescList = new Dictionary<int, string[]>();
 
-        foreach(string q in npcQuestTalk )
+        foreach (string q in npcQuestTalk)
         {
             string[] quest = q.Split("//");
+            string[] desc = npcQuestDesc[npcQuestIndex].Split("//");
+            
             npcQuestList.Add(npcQuestIndex, quest);
+            npcQuestDescList.Add(npcQuestIndex, desc);
             npcQuestIndex++;
         }
 

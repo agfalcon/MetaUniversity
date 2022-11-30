@@ -48,13 +48,9 @@ public class QuestManager : MonoBehaviour
 
         for (int i = 0; i < npcs.Length; i++)
         {
-            NPCMove npc = npcs[i].GetComponent<NPCMove>();
-            if(npc.npcId != curNpc.npcMove.npcId) // 현재 퀘스트의 NPC가 아니라면
-            {
-                NPCTrigger nt = npcs[i].GetComponentInChildren<NPCTrigger>();
-                nt.exclaimMark.SetActive(false);
-                nt.questionMark.SetActive(false);
-            }
+            NPCTrigger nt = npcs[i].GetComponentInChildren<NPCTrigger>();
+            nt.exclaimMark.SetActive(false);
+            nt.questionMark.SetActive(false);
         }
     }
 
@@ -74,15 +70,31 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    void QuestUIControll(bool flag)
+    {
+        if (flag)
+            SetOffAllNpcMark();
+        else
+            SetOnAllNpcMark();
+        curQuestList.SetActive(flag);
+        curNpc.exclaimMark.SetActive(flag);
+    }
+
+    void UpdateQuestList()
+    {
+        curQuestList.SetActive(true);
+
+    }
+
     public void QuestEnter(NPCTrigger npc)
     {
         curNpc = npc;
         isQuesting = true;
-        curQuestList.SetActive(true);
 
-        curQuestName = npc.npcQuestList[npc.currentQuestIndex][0]; 
-        SetOffAllNpcMark();
-        
+        curQuestName = npc.npcQuestList[npc.currentQuestIndex][0];
+        QuestUIControll(true);
+        UpdateQuestList();
+
         Debug.Log("현재 수락한 퀘스트 이름: " + curQuestName);
     }
 
@@ -91,8 +103,7 @@ public class QuestManager : MonoBehaviour
     public void QuestExit()
     {
         isQuesting = false;
-        curQuestList.SetActive(false);
-        SetOnAllNpcMark();
+        QuestUIControll(false);
     }
 
 }
