@@ -2,31 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class TalkManager : MonoBehaviour
 {
     private static TalkManager instance = null;
-    public static TalkManager Instance 
-    { 
-        get 
+    public static TalkManager Instance
+    {
+        get
         {
             if (instance == null)
                 return null;
 
             return instance;
-        } 
+        }
     }
 
     public GameObject playerUI;
     public GameObject questUI;
     public GameObject dropDownImg;
+    public GameObject skipImg;
     public GameObject questBtn;
     public GameObject questInteraction;
     public TMP_Text npcTalkText;
     public TMP_Text nameText;
     public TMP_Text questBtnText;
+    public TMP_Text skipText;
 
     public bool isTalk = false;
     [HideInInspector]
@@ -52,7 +52,7 @@ public class TalkManager : MonoBehaviour
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
 
@@ -76,7 +76,7 @@ public class TalkManager : MonoBehaviour
                 QuestManager.Instance.QuestEnter(npc);
                 QuestTalkExit();
             }
-            else if (Input.GetKeyDown(KeyCode.N))
+            else if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Space))
             {
                 QuestTalkExit();
             }
@@ -111,6 +111,7 @@ public class TalkManager : MonoBehaviour
 
     public void NPCChat(string npcTalk)
     {
+        skipText.text = "Skip(Space bar)";
         dropDownImg.SetActive(false);
         StartCoroutine("QuestInfoRoutine", npcTalk);
     }
@@ -191,6 +192,8 @@ public class TalkManager : MonoBehaviour
         {
             if (npcTalk_OR_Quest_Index >= npcTalk_OR_Quest_List.Length) // 마지막 대화라면
             {
+                skipText.text = "대화 종료(Space bar)";
+
                 if (currentQuestIndex < npcQuestIndex && !QuestManager.Instance.isQuesting && !isQuestTalk) // 수행할 수 있는 퀘스트가 존재하고 현재 플레이어가 다른 퀘스트를 하고 있지 않은 경우
                 {
                     questName = npcQuestList[currentQuestIndex][0];
@@ -235,7 +238,7 @@ public class TalkManager : MonoBehaviour
 
     public void QuickStopChat(string npcTalk)
     {
-        if(isCor)
+        if (isCor)
         {
             print("QuickStopChat");
 

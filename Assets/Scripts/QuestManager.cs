@@ -76,9 +76,12 @@ public class QuestManager : MonoBehaviour
             SetOffAllNpcMark();
         else
             SetOnAllNpcMark();
+
         curQuestList.SetActive(flag);
-        curQuestName_T.text = "";
         curNpc.exclaimMark.SetActive(flag);
+        
+        curQuestName_T.text = "";
+        curQuestDo_T.text = "";
     }
 
     void UpdateQuestList()
@@ -99,11 +102,11 @@ public class QuestManager : MonoBehaviour
         curQuestName = npc.npcQuestList[npc.currentQuestIndex][0];
         QuestUIControll(true);
         UpdateQuestList();
-
-        Debug.Log("현재 수락한 퀘스트 이름: " + curQuestName);
     }
 
     // 퀘스트 성공 시 해당 npc의 다음 퀘스트 진행을 위해 npc.currentQuestIndex를 증가 시켜줘야 함
+
+
 
     public void QuestExit()
     {
