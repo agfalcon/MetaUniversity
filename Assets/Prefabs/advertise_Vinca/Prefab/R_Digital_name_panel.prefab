@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 930864455327701839}
   m_Layer: 0
-  m_Name: Digital_name_panel (1)
+  m_Name: R_Digital_name_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
