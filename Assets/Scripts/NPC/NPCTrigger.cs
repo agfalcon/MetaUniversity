@@ -14,16 +14,16 @@ public class NPCTrigger : MonoBehaviour
     public string npcName;
     public string[] npcTalk;
 
-    // NPC 퀘스트 대화(한 배열에 한 퀘스트 씩, 첫 문장은 퀘스트 이름으로 쓸 것)
+    // NPC 퀘스트 대화(한 배열에 한 퀘스트 씩, 첫 문장은 퀘스트 이름으로 쓸 것), npcQuestTalk와 npcQuestDesc는 Length(개수)가 같아야 함
     public string[] npcQuestTalk;
+    public string[] npcQuestDesc;
     
     [HideInInspector]
     public int currentQuestIndex = 0;
     [HideInInspector]
     public int npcQuestIndex = 0;
-    public Dictionary<int, string[]> npcQuestList;
 
-    public string[] npcQuestDesc;
+    public Dictionary<int, string[]> npcQuestList;
     public Dictionary<int, string[]> npcQuestDescList;
 
     bool isTriggerInPlayer = false;

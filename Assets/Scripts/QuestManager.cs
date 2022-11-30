@@ -77,13 +77,18 @@ public class QuestManager : MonoBehaviour
         else
             SetOnAllNpcMark();
         curQuestList.SetActive(flag);
+        curQuestName_T.text = "";
         curNpc.exclaimMark.SetActive(flag);
     }
 
     void UpdateQuestList()
     {
         curQuestList.SetActive(true);
-
+        curQuestName_T.text = curQuestName;
+        foreach(var txt in curNpc.npcQuestDescList[curNpc.currentQuestIndex])
+        {
+            curQuestDo_T.text += txt + '\n';
+        }
     }
 
     public void QuestEnter(NPCTrigger npc)
