@@ -160,7 +160,6 @@ public class QuestManager : MonoBehaviour
                 successImg.GetComponent<Image>().color = color;
             }
 
-            Debug.Log("Time: " + time);
             yield return null;
         }
 
