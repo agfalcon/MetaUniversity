@@ -100,20 +100,18 @@ public class NPCTrigger : MonoBehaviour
     {
         Vector3 lookatVec = player.transform.position - parent.transform.position;
         parent.transform.rotation = Quaternion.Slerp(parent.transform.rotation, Quaternion.LookRotation(lookatVec), Time.deltaTime * npcMove.rotateSpeed);
-        /*Vector3 test = new Vector3(player.transform.position.x, parent.transform.position.y, player.transform.position.z);
-        parent.transform.LookAt(test);*/
+        
     }
 
     void FirstTalkWithPlayer()
     {
-        if (Input.GetKey(KeyCode.F) && !PlayerMove.Instance.isF && !TalkManager.Instance.isTalk)
+        if (Input.GetKeyDown(KeyCode.F) && !PlayerMove.Instance.isF && !TalkManager.Instance.isTalk)
         {
             TalkManager.Instance.FirstInteractWithPlayer(this);
 
-            if (QuestManager.Instance.isQuesting && QuestManager.Instance.curNpc == this)
+            if (QuestManager.Instance.isQuesting && QuestManager.Instance.curNpc == this) // 퀘스트를 수락중인 상태에서 해당 NPC와 대화하는 경우
             {
-                TalkManager.Instance.TalkOrQuest(1);
-                // QuestManager의 Questing함수를 호출해 각 npc의 퀘스트를 수행하도록 수정
+                QuestManager.Instance.Questing();
             }
             else
             {

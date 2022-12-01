@@ -103,6 +103,7 @@ public class TalkManager : MonoBehaviour
     public void NPCChatEnter(string npcName)
     {
         isTalk = true;
+        npcTalk_OR_Quest_Index = 0;
         UIOnOFF(isTalk);
 
         nameText.text = npcName;
@@ -177,6 +178,18 @@ public class TalkManager : MonoBehaviour
                 break;
         }
 
+        NPCChat(curNpcTalk_OR_Quest_Text);
+        npcTalk_OR_Quest_Index++;
+    }
+
+    public void TalkOrQuest(string[] talkList)
+    {
+        PlayerMove.Instance.isF = true;
+        NPCChatEnter(npcName);
+
+        npcTalk_OR_Quest_List = talkList;
+
+        curNpcTalk_OR_Quest_Text = npcTalk_OR_Quest_List[npcTalk_OR_Quest_Index];
         NPCChat(curNpcTalk_OR_Quest_Text);
         npcTalk_OR_Quest_Index++;
     }

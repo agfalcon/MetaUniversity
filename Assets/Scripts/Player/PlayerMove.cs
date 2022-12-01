@@ -22,7 +22,8 @@ public class PlayerMove : MonoBehaviour
     public float walkSpeed = 7f; // 걷기 속도
     public float runSpeed = 7f; // 달리기 속도
     public float stat = 5f; // 스태미너
-    float maxStat = 5f; // 최대 스태미너
+    [HideInInspector]
+    public float maxStat = 5f; // 최대 스태미너
 
     public Image statImg; // 스태미너 게이지
 
