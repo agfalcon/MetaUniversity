@@ -108,8 +108,17 @@ public class NPCTrigger : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.F) && !PlayerMove.Instance.isF && !TalkManager.Instance.isTalk)
         {
-            TalkManager.Instance.FirstInteractWithPlayer(this);
-            TalkManager.Instance.TalkOrQuest(0);
+            if (QuestManager.Instance.isQuesting)
+            {
+                TalkManager.Instance.FirstInteractWithPlayer(this);
+                //TalkManager.Instance.TalkOrQuest(1);
+                // QuestManager의 Questing함수를 호출해 각 npc의 퀘스트를 수행하도록 수정
+            }
+            else
+            {
+                TalkManager.Instance.FirstInteractWithPlayer(this);
+                TalkManager.Instance.TalkOrQuest(0);
+            }
         }
     }
 

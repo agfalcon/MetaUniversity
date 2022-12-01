@@ -106,7 +106,20 @@ public class QuestManager : MonoBehaviour
 
     // 퀘스트 성공 시 해당 npc의 다음 퀘스트 진행을 위해 npc.currentQuestIndex를 증가 시켜줘야 함
 
+    void Questing()
+    {
+        switch (curNpc.npcMove.npcId)
+        {
+            case 1000:
 
+                break;
+            case 1001:
+                curNpc.currentQuestIndex++;
+                break;
+            default:
+                break;
+        }
+    }
 
     public void QuestExit()
     {
