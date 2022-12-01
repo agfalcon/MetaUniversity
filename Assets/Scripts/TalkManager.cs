@@ -73,7 +73,7 @@ public class TalkManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                QuestManager.Instance.QuestEnter(npc);
+                QuestManager.Instance.QuestEnter(npc); // 수락한 퀘스트를 제공하는 npc의 NPCTrigger를 전달 
                 QuestTalkExit();
             }
             else if (Input.GetKeyDown(KeyCode.N) || Input.GetKeyDown(KeyCode.Space))

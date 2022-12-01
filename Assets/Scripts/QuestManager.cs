@@ -26,7 +26,8 @@ public class QuestManager : MonoBehaviour
     public bool isQuesting = false;
     [HideInInspector]
     public string curQuestName;
-    NPCTrigger curNpc;
+    [HideInInspector]
+    public NPCTrigger curNpc; // 현재 진행중인 퀘스트의 NPCTrigger
 
     void Awake()
     {
