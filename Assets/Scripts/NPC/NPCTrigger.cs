@@ -98,8 +98,10 @@ public class NPCTrigger : MonoBehaviour
 
     void RotationNPCtoPlayer()
     {
-        Vector3 lookatVec = player.transform.position - parent.transform.position;
-        parent.transform.rotation = Quaternion.Slerp(parent.transform.rotation, Quaternion.LookRotation(lookatVec), Time.deltaTime * npcMove.rotateSpeed);
+        Vector3 to = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
+        Vector3 from = new Vector3(parent.transform.position.x, 0f, parent.transform.position.z);
+        Quaternion rotation = Quaternion.LookRotation(to - from);
+        parent.transform.rotation = Quaternion.Slerp(parent.transform.rotation, rotation, Time.deltaTime * npcMove.rotateSpeed);
         
     }
 

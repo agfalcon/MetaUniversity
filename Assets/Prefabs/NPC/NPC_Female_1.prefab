@@ -68,10 +68,12 @@ MonoBehaviour:
   - "\uC548\uB155, \uB09C NPC \uAE40\uB3D9\uD558\uB77C\uACE0\uD574 \uB9CC\uB098\uC11C
     \uBC18\uAC00\uC6CC."
   - "\uB098\uB294 \uAE08\uC624\uACF5\uB300 \uCEF4\uD4E8\uD130\uACF5\uD559\uACFC 18\uD559\uBC88\uC774\uC57C"
-  - ddddddddd
-  - asaaasaasasasas
   npcQuestTalk:
-  - "\uD018\uC2A4\uD2B8 \uC774\uB984//\uD558\uC774//\uC548\uB155\uC548\uB155//\uC548\uB155\uC548\uB155\uC548\uB155//\uBC14\uC774\uBC14\uC774\uBC14\uC774"
+  - "\uAE08\uC624\uACF5\uB300\uC5D0 \uB300\uD55C \uC124\uBA85 \uB4E3\uAE30//\uAE08\uC624\uACF5\uB300\uC5D0
+    \uB300\uD55C \uC124\uBA85\uC744 \uB4E3\uACE0 \uC2F6\uC5B4?// \uD018\uC2A4\uD2B8
+    \uC218\uB77D \uD6C4 \uB2E4\uC2DC \uB9D0\uC744 \uAC78\uBA74 \uC54C\uB824\uC904\uAC8C"
+  npcQuestDesc:
+  - "\uAE40\uB3D9\uD558\uC640 \uB300\uD654\uD558\uAE30"
   currentQuestIndex: 0
   npcQuestIndex: 0
 --- !u!1 &1965486345
@@ -504,8 +506,8 @@ Transform:
   m_GameObject: {fileID: 6252356961377389083}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 1.67, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6252356961376966623}
   - {fileID: 6252356961376964985}
@@ -552,7 +554,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!114 &1780328947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,14 +569,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
-  npcId: 1000
+  npcId: 1001
   currentSpeed: 0
-  walkSpeed: 1
+  walkSpeed: 2
   runSpeed: 0.07
   rotateSpeed: 5
-  movePose:
-  - {fileID: 0}
-  - {fileID: 0}
+  movePose: []
+  moveStopAlways: 0
   isMoving: 1
   isReverse: 0
 --- !u!1 &6252356961377389087

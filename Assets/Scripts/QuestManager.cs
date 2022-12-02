@@ -119,6 +119,9 @@ public class QuestManager : MonoBehaviour
             case 1001:
                 NPC_1001_Quest();
                 break;
+            case 3000:
+                NPC_3000_Quest();
+                break;
             default:
                 break;
         }
@@ -172,7 +175,8 @@ public class QuestManager : MonoBehaviour
             "금오공과대학교(Kumoh National Institute of Technology)는 대한민국의 교육부 소속 4년제 국립공과대학교이다.",
             "1979년에 박정희 대통령의 지시로 박정희 대통령의 고향인 경북 구미시에 공학계열 중심의 금오공과대학교가 설립인가 되었다.",
             "1990년에 국립대학으로 개편되고 1993년에 현재의 이름으로 바뀌었다. 2004년 12월 30일에 교사 이전을 완료하고, 2005년부터 현재의 구미시 양호동 신캠퍼스를 쓰고 있다.",
-            "영문 이니셜은 Kit이며, 약칭으로 ‘금오공대’라고 부른다."};
+            "영문 이니셜은 Kit이며, 약칭으로 ‘금오공대’라고 부른다.",
+            "금오공대에 대한 설명은 여기까지야."};
 
         TalkManager.Instance.FirstInteractWithPlayer(curNpc);
         TalkManager.Instance.TalkOrQuest(talkList);
@@ -191,6 +195,11 @@ public class QuestManager : MonoBehaviour
 
         QuestExit();
         Invoke("SuccessQuest", 0.5f);
+    }
+
+    void NPC_3000_Quest()
+    {
+        string[] talkList = new string[] { };
     }
 
 }

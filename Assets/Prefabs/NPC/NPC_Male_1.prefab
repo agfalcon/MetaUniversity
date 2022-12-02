@@ -105,6 +105,7 @@ MonoBehaviour:
   npcQuestTalk:
   - "\uD018\uC2A4\uD2B8 \uC774\uB984//\uC2DC\uBC1C \uAE40\uC900\uC6A9//\uC2DC\uBC1C\uC2DC\uBC1C
     \uAE40\uC900\uC6A9 \uAE40\uC900\uC6A9"
+  npcQuestDesc: []
   currentQuestIndex: 0
   npcQuestIndex: 0
 --- !u!1001 &1633435903
@@ -269,6 +270,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7478225697115775088, guid: 6fb37f825ee63264b9c2600bf1a52006, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7478225697115775088, guid: 6fb37f825ee63264b9c2600bf1a52006, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7478225697115775088, guid: 6fb37f825ee63264b9c2600bf1a52006, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7478225697115775088, guid: 6fb37f825ee63264b9c2600bf1a52006, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.157753
       objectReference: {fileID: 0}
@@ -308,6 +321,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7478225697115775088, guid: 6fb37f825ee63264b9c2600bf1a52006, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7478225697116208144, guid: 6fb37f825ee63264b9c2600bf1a52006, type: 3}
       propertyPath: m_Name
       value: NPC_Male_1
@@ -340,7 +357,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!114 &1878630163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,12 +374,13 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   npcId: 2000
   currentSpeed: 0
-  walkSpeed: 1
+  walkSpeed: 2
   runSpeed: 0.07
   rotateSpeed: 5
   movePose:
   - {fileID: 0}
   - {fileID: 0}
+  moveStopAlways: 0
   isMoving: 1
   isReverse: 0
 --- !u!4 &3148876539554544504 stripped

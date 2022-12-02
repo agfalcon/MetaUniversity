@@ -71,6 +71,7 @@ MonoBehaviour:
   - "\uAC1C \uC2DC\uBC1C\uB828\uC544 \uAE30\uC5B5\uD574\uB77C"
   - 
   npcQuestTalk: []
+  npcQuestDesc: []
   currentQuestIndex: 0
   npcQuestIndex: 0
 --- !u!1 &925838426
@@ -264,6 +265,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 856601670117272814, guid: b14953694d54eea4eb66f453e525024c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 856601670117272814, guid: b14953694d54eea4eb66f453e525024c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 856601670117272814, guid: b14953694d54eea4eb66f453e525024c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 856601670117272814, guid: b14953694d54eea4eb66f453e525024c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.86
       objectReference: {fileID: 0}
@@ -303,6 +316,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 856601670117272814, guid: b14953694d54eea4eb66f453e525024c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c, type: 3}
       propertyPath: m_Name
       value: NPC_Zombie_1
@@ -339,7 +356,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!114 &1157983520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,12 +373,13 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   npcId: 5000
   currentSpeed: 0
-  walkSpeed: 1
+  walkSpeed: 2
   runSpeed: 0.07
   rotateSpeed: 5
   movePose:
   - {fileID: 0}
   - {fileID: 0}
+  moveStopAlways: 0
   isMoving: 1
   isReverse: 0
 --- !u!4 &733099619838180180 stripped
