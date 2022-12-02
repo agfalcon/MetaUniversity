@@ -105,16 +105,20 @@ public class PlayerMove : MonoBehaviour
     {
         if (isJump && cc.collisionFlags == CollisionFlags.CollidedBelow)
         {
-            isJump = false;
-            print("isJump && isGrounded");
+            //isJump = false;
+            Invoke(nameof(SetIsJumpFalse), 0.5f);
         }
 
         if (Input.GetButtonDown("Jump") && !isJump)
         {
-            print("playerJump");
             yVelocity = jumpPower;
             isJump = true;
         }
+    }
+
+    void SetIsJumpFalse()
+    {
+        isJump = false;
     }
 
     void Move()
