@@ -30,7 +30,7 @@ public class PlayerMove : MonoBehaviour
     CharacterController cc;
 
     // 중력 변수
-    float gravitiy = -20f;
+    float gravitiy = -10f;
     // 수직 속력 변수
     float yVelocity = 0f;
     // 점프력 변수
@@ -67,18 +67,22 @@ public class PlayerMove : MonoBehaviour
         // 메인 카메라를 기준으로 방향 변경
         dir = Camera.main.transform.TransformDirection(dir);
 
-        Jump();
-        Move();
-
         yVelocity += gravitiy * Time.deltaTime;
         dir.y = yVelocity;
 
-        if(!IsCheckGrounded() && isF) // 점프상태에서 상호작용 시 캐릭터가 공중에서 멈춘상태로 상호작용 하는 것을 방지
+        if (!IsCheckGrounded() && isF) // 점프상태에서 상호작용 시 캐릭터가 공중에서 멈춘상태로 상호작용 하는 것을 방지
         {
-            cc.Move(dir * 3f * Time.deltaTime);
+            print("!IsCheckGrounded");
+            cc.Move(new Vector3(0f, yVelocity, 0f) * 3f * Time.deltaTime);
         }
-        
-        cc.Move(dir * currentSpeed * Time.deltaTime);
+
+        if (!isF)
+        {
+            Jump();
+            Move();
+            cc.Move(dir * currentSpeed * Time.deltaTime);
+        }
+
     }
 
     bool IsCheckGrounded()
