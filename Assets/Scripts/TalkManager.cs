@@ -114,7 +114,7 @@ public class TalkManager : MonoBehaviour
     {
         skipText.text = "Skip(Space bar)";
         dropDownImg.SetActive(false);
-        StartCoroutine("QuestInfoRoutine", npcTalk);
+        StartCoroutine(nameof(QuestInfoRoutine), npcTalk);
     }
 
     public void NPCChatExit()
@@ -255,7 +255,7 @@ public class TalkManager : MonoBehaviour
         {
             print("QuickStopChat");
 
-            StopCoroutine("QuestInfoRoutine");
+            StopCoroutine(nameof(QuestInfoRoutine));
             npcTalkText.text = npcTalk;
             dropDownImg.SetActive(true);
             isCor = false;

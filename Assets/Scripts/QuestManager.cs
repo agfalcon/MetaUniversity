@@ -140,7 +140,7 @@ public class QuestManager : MonoBehaviour
         PlayerMove.Instance.maxStat += 0.5f; // 퀘스트 성공 시 캐릭터 스태미너 0.5씩 증가
 
         successImg.SetActive(true);
-        StartCoroutine("SuccessImgFadeOut");
+        StartCoroutine(nameof(SuccessImgFadeOut));
     }
 
     IEnumerator SuccessImgFadeOut()
@@ -181,7 +181,7 @@ public class QuestManager : MonoBehaviour
         TalkManager.Instance.FirstInteractWithPlayer(curNpc);
         TalkManager.Instance.TalkOrQuest(talkList);
 
-        StartCoroutine("NPC_1001_QuestCor");
+        StartCoroutine(nameof(NPC_1001_QuestCor));
     }
 
     IEnumerator NPC_1001_QuestCor()
@@ -194,12 +194,18 @@ public class QuestManager : MonoBehaviour
         }
 
         QuestExit();
-        Invoke("SuccessQuest", 0.5f);
+        Invoke(nameof(SuccessQuest), 0.5f);
     }
 
     void NPC_3000_Quest()
     {
-        string[] talkList = new string[] { };
+        GameObject[] pos = new GameObject[5];
+        pos[0] = transform.GetChild(0).GetChild(0).gameObject;
+        pos[1] = transform.GetChild(0).GetChild(1).gameObject;
+        pos[2] = transform.GetChild(0).GetChild(2).gameObject;
+        pos[3] = transform.GetChild(0).GetChild(3).gameObject;
+        pos[4] = transform.GetChild(0).GetChild(4).gameObject;
+        
     }
 
 }

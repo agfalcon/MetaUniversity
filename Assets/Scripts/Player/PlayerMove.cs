@@ -35,6 +35,7 @@ public class PlayerMove : MonoBehaviour
     float yVelocity = 0f;
     // 점프력 변수
     public float jumpPower = 3f;
+    [SerializeField]
     bool isJump = false;
     bool isRun = false;
 
@@ -105,10 +106,12 @@ public class PlayerMove : MonoBehaviour
         if (isJump && cc.collisionFlags == CollisionFlags.CollidedBelow)
         {
             isJump = false;
+            print("isJump && isGrounded");
         }
 
         if (Input.GetButtonDown("Jump") && !isJump)
         {
+            print("playerJump");
             yVelocity = jumpPower;
             isJump = true;
         }
