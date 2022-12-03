@@ -199,7 +199,6 @@ public class TalkManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isCor) // 대화 스킵
         {
             QuickStopChat(curNpcTalk_OR_Quest_Text);
-            print("Chat Skip");
         }
         else if (Input.GetKeyDown(KeyCode.Space) && PlayerMove.Instance.isF && isTalk && !isCor) // NPC의 대화 한 문장이 출력 된 후 다음 문장으로 넘어가기 위함
         {
@@ -253,8 +252,6 @@ public class TalkManager : MonoBehaviour
     {
         if (isCor)
         {
-            print("QuickStopChat");
-
             StopCoroutine(nameof(QuestInfoRoutine));
             npcTalkText.text = npcTalk;
             dropDownImg.SetActive(true);

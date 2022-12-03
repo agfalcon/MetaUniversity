@@ -110,15 +110,15 @@ public class NPCTrigger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && !PlayerMove.Instance.isF && !TalkManager.Instance.isTalk)
         {
             TalkManager.Instance.FirstInteractWithPlayer(this);
-
-            if (QuestManager.Instance.isQuesting && QuestManager.Instance.curNpc == this) // 퀘스트를 수락중인 상태에서 해당 NPC와 대화하는 경우
+            TalkManager.Instance.TalkOrQuest(0);
+            /*if (QuestManager.Instance.isQuesting && QuestManager.Instance.curNpc == this) // 퀘스트를 수락중인 상태에서 해당 NPC와 대화하는 경우
             {
                 QuestManager.Instance.Questing();
             }
             else
             {
                 TalkManager.Instance.TalkOrQuest(0);
-            }
+            }*/
         }
     }
 

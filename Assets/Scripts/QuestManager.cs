@@ -105,6 +105,8 @@ public class QuestManager : MonoBehaviour
         curQuestName = npc.npcQuestList[npc.currentQuestIndex][0];
         QuestUIControll(true);
         UpdateQuestList();
+
+        Questing();
     }
 
     // 퀘스트 성공 시 해당 npc의 다음 퀘스트 진행을 위해 npc.currentQuestIndex를 증가 시켜줘야 함
@@ -169,7 +171,13 @@ public class QuestManager : MonoBehaviour
         successImg.SetActive(false);
     }
 
-    void NPC_1001_Quest()
+    void QuestEndAndSuccess()
+    {
+        QuestExit();
+        Invoke(nameof(SuccessQuest), 0.5f);
+    }
+
+    void NPC_1001_Quest() // 현재 NPCTrigger에서 컨트롤해 퀘스트를 수행하는데 이걸 QuestManager에서만 처리하도록 수정해야함
     {
         string[] talkList = new string[] { 
             "금오공과대학교(Kumoh National Institute of Technology)는 대한민국의 교육부 소속 4년제 국립공과대학교이다.",
@@ -188,24 +196,44 @@ public class QuestManager : MonoBehaviour
     {
         while (true)
         {
-            if (!TalkManager.Instance.isTalk)
-                break;
-            yield return null;
+            yield return new WaitUntil(() => TalkManager.Instance.isTalk == false);
+            break;
         }
 
-        QuestExit();
-        Invoke(nameof(SuccessQuest), 0.5f);
+        QuestEndAndSuccess();
     }
 
     void NPC_3000_Quest()
     {
-        GameObject[] pos = new GameObject[5];
-        pos[0] = transform.GetChild(0).GetChild(0).gameObject;
-        pos[1] = transform.GetChild(0).GetChild(1).gameObject;
-        pos[2] = transform.GetChild(0).GetChild(2).gameObject;
-        pos[3] = transform.GetChild(0).GetChild(3).gameObject;
-        pos[4] = transform.GetChild(0).GetChild(4).gameObject;
-        
+        GameObject parentPos = GameObject.Find("QuestPosition"); // Find()는 비활성화 되어있는 객체는 찾지 못함
+        GameObject[] portal = new GameObject[5];
+        portal[0] = parentPos.transform.GetChild(0).gameObject;
+        portal[1] = parentPos.transform.GetChild(1).gameObject;
+        portal[2] = parentPos.transform.GetChild(2).gameObject;
+        portal[3] = parentPos.transform.GetChild(3).gameObject;
+        portal[4] = parentPos.transform.GetChild(4).gameObject;
+
+        StartCoroutine(nameof(NPC_3000_QuestCor), portal);
+    }
+
+    IEnumerator NPC_3000_QuestCor(GameObject[] portal)
+    {
+        int curIndex = 0;
+        int portalLen = portal.Length;
+
+        while (curIndex < portalLen)
+        {
+            QuestPortal qp = portal[curIndex].GetComponent<QuestPortal>();
+
+             portal[curIndex].SetActive(true);
+
+            yield return new WaitUntil(() => qp.isTrigger == true); // qp의 isTrigger의 값이 true가 될때까지 대기
+
+            portal[curIndex].SetActive(false);
+            curIndex++;
+        }
+
+        QuestEndAndSuccess();
     }
 
 }
