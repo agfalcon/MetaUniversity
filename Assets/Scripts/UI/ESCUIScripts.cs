@@ -31,6 +31,7 @@ public class ESCUIScripts : MonoBehaviour
 
     public void btnToStart()
     {
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
         StartCoroutine(LoadMyAsyncScene());
         //SceneManager.LoadScene("Kumoh_Main");
     }

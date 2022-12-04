@@ -1,23 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UIData : MonoBehaviour
+public class ControllScreenMode : MonoBehaviour
 {
-    public bool isStart;
-    public bool isSoundOn;
-    public FullScreenMode screenMode;
+    public GameObject ScreenModeDropDown;
+    Dropdown Dropdown;
+
     // Start is called before the first frame update
     void Start()
     {
-        isStart = false;
-        isSoundOn = true;
-        screenMode = FullScreenMode.FullScreenWindow;
+        Dropdown = ScreenModeDropDown.GetComponent<Dropdown>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void SetMode()
+    {
+
     }
 }

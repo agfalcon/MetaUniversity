@@ -1,13 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ScreenResolution : MonoBehaviour
 {
+    FullScreenMode screenMode;
+    public GameObject resolutionDropDownObject;
+    TMP_Dropdown resolutionDropDown;
+    List<Resolution> resolutions = new List<Resolution>();
+    int resolutionNum;
+
+    public GameObject UIDataO;
+    UIData uiData;
     // Start is called before the first frame update
     void Start()
     {
-        
+        uiData = UIDataO.GetComponent<UIData>();
+        resolutionDropDown = resolutionDropDownObject.GetComponent<TMP_Dropdown>();
+        InitUI();
     }
 
     // Update is called once per frame
@@ -15,25 +27,40 @@ public class ScreenResolution : MonoBehaviour
     {
         
     }
-    public void SetResolution()
+    void InitUI()
     {
-        int setWidth = 1920; // 사용자 설정 너비
-        int setHeight = 1080; // 사용자 설정 높이
-
-        int deviceWidth = Screen.width; // 기기 너비 저장
-        int deviceHeight = Screen.height; // 기기 높이 저장
-
-        Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), true); // SetResolution 함수 제대로 사용하기
-
-        if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // 기기의 해상도 비가 더 큰 경우
+        for(int i=0; i< Screen.resolutions.Length; i++)
         {
-            float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // 새로운 너비
-            Camera.main.rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f); // 새로운 Rect 적용
+            if (Screen.resolutions[i].refreshRate == 60)
+            {
+                resolutions.Add(Screen.resolutions[i]);
+            }
         }
-        else // 게임의 해상도 비가 더 큰 경우
+        resolutionDropDown.options.Clear();
+
+        int optionNum = 0;
+        foreach(Resolution item in resolutions)
         {
-            float newHeight = ((float)deviceWidth / deviceHeight) / ((float)setWidth / setHeight); // 새로운 높이
-            Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // 새로운 Rect 적용
+            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
+            option.text = item.width + " X "  + item.height;
+            resolutionDropDown.options.Add(option);
+             
+            if (item.width == Screen.width && item.height == Screen.height)
+                resolutionDropDown.value = optionNum;
+            optionNum++;
         }
+        resolutionDropDown.RefreshShownValue();
     }
+
+    public void DropboxOptionChange(int x)
+    {
+        resolutionNum = x;
+        Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, uiData.screenMode);
+    }
+
+    public void FullScreenBtn(bool isFull)
+    {
+        screenMode = isFull ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
+    }
+
 }
