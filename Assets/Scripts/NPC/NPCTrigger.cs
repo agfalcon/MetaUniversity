@@ -71,7 +71,7 @@ public class NPCTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             isTriggerInPlayer = true;
             npcMove.isMoving = false;
@@ -80,7 +80,7 @@ public class NPCTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             isTriggerInPlayer = true;
         }
@@ -88,7 +88,7 @@ public class NPCTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             isTriggerInPlayer = false;
             npcMove.isMoving = true;
@@ -111,14 +111,6 @@ public class NPCTrigger : MonoBehaviour
         {
             TalkManager.Instance.FirstInteractWithPlayer(this);
             TalkManager.Instance.TalkOrQuest(0);
-            /*if (QuestManager.Instance.isQuesting && QuestManager.Instance.curNpc == this) // 퀘스트를 수락중인 상태에서 해당 NPC와 대화하는 경우
-            {
-                QuestManager.Instance.Questing();
-            }
-            else
-            {
-                TalkManager.Instance.TalkOrQuest(0);
-            }*/
         }
     }
 

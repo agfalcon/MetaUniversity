@@ -28,6 +28,9 @@ public class PlayerMove : MonoBehaviour
     public Image statImg; // 스태미너 게이지
 
     CharacterController cc;
+    Animator anim;
+
+    float h, v;
 
     // 중력 변수
     float gravitiy = -10f;
@@ -38,6 +41,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     bool isJump = false;
     bool isRun = false;
+    bool isWalk = false;
 
     public bool isF = false; // 플레이어가 상호작용 중인지
 
@@ -55,15 +59,15 @@ public class PlayerMove : MonoBehaviour
         }
 
         cc = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
 
         Vector3 dir = new Vector3(h, 0, v);
-        //dir = dir.normalized;
 
         // 메인 카메라를 기준으로 방향 변경
         dir = Camera.main.transform.TransformDirection(dir);
@@ -83,29 +87,26 @@ public class PlayerMove : MonoBehaviour
             Move();
             cc.Move(dir * currentSpeed * Time.deltaTime);
         }
-
+        UpdateAnim();
     }
 
     bool IsCheckGrounded()
     {
         if (cc.isGrounded) return true;
-        // 발사하는 광선의 초기 위치와 방향
-        // 약간 신체에 박혀 있는 위치로부터 발사하지 않으면 제대로 판정할 수 없을 때가 있다.
         var ray = new Ray(this.transform.position + Vector3.up * 0.1f, Vector3.down);
-        // 탐색 거리
         var maxDistance = 1.5f;
-        // 광선 디버그 용도
-        Debug.DrawRay(transform.position + Vector3.up * 0.1f, Vector3.down * maxDistance, Color.red);
-        // Raycast의 hit 여부로 판정
-        // 지상에만 충돌로 레이어를 지정
         return Physics.Raycast(ray, maxDistance);
+    }
+
+    void UpdateAnim()
+    {
+        anim.SetFloat("speed", currentSpeed);
     }
 
     void Jump()
     {
         if (isJump && cc.collisionFlags == CollisionFlags.CollidedBelow)
         {
-            //isJump = false;
             Invoke(nameof(SetIsJumpFalse), 0.5f);
         }
 
@@ -123,15 +124,28 @@ public class PlayerMove : MonoBehaviour
 
     void Move()
     {
+        if (!isRun && (h != 0 || v != 0))
+        {
+            isWalk = true;
+            currentSpeed = walkSpeed;
+        }
+        else isWalk = false;
+
         if (!isRun && Input.GetButton("LShift") && stat >= 0.5)
         {
             currentSpeed = runSpeed;
             isRun = true;
+            isWalk = false;
         }
         else if(Input.GetButtonUp("LShift") || stat <= 0)
         {
             currentSpeed = walkSpeed;
             isRun = false;
+            isWalk = true;
+        }
+        else if(!isWalk && !isRun)
+        {
+            currentSpeed = 0;
         }
 
         if (isRun)

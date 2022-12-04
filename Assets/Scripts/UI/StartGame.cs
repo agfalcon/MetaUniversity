@@ -16,6 +16,14 @@ public class StartGame : MonoBehaviour
         uiData = UIDataO.GetComponent<UIData>();
         uiData.isStart = true;
         MainCharacter.SetActive(true);
+
+        Invoke(nameof(CameraRotateEnabled), 0.5f);
+    }
+
+    void CameraRotateEnabled()
+    {
+        Camera.main.GetComponent<CamRotate>().enabled = true;
+
     }
 }
     
