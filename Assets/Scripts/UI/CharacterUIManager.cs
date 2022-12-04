@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class CharacterUIManager : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class CharacterUIManager : MonoBehaviour
     public GameObject MainCam;
     public GameObject MiniCam;
     Camera camera;
+    public GameObject MiniMap;
+    public GameObject CharPlace;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +75,8 @@ public class CharacterUIManager : MonoBehaviour
     {
         if (!isWait2 && isM && Input.GetKey(KeyCode.M))
         {
+            CharPlace.SetActive(false);
+            MiniMap.SetActive(false);
             camera.enabled = false;
             isM = false;
             isWait2 = true;
@@ -79,6 +85,9 @@ public class CharacterUIManager : MonoBehaviour
         }
         else if (!isWait2 && !isM && Input.GetKey(KeyCode.M))
         {
+            CharPlace.SetActive(true);
+            MiniMap.SetActive(true);
+            MiniCam.transform.position = new Vector3(MainCharacter.transform.position.x, MiniCam.transform.position.y, MainCharacter.transform.position.z);
             camera.enabled = true;
             isM = true;
             isWait2 = true;
