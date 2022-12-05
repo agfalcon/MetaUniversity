@@ -14,6 +14,7 @@ public class ControllBrightness : MonoBehaviour
     {
         slider = Scroll.GetComponent<Slider>();
         mainLight = light.GetComponent<Light>();
+        slider.value = mainLight.intensity / 2;
     }
 
     // Update is called once per frame
