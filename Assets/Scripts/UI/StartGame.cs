@@ -8,22 +8,18 @@ public class StartGame : MonoBehaviour
     public GameObject obj1;
     public GameObject UIDataO;
     public GameObject MainCharacter;
+    public GameObject Help;
     UIData uiData;
     // Start is called before the first frame update
     public void GameStart()
     {
         obj1.SetActive(false);
+        Help.SetActive(true);
         uiData = UIDataO.GetComponent<UIData>();
         uiData.isStart = true;
         MainCharacter.SetActive(true);
-
-        Invoke(nameof(CameraRotateEnabled), 0.5f);
-    }
-
-    void CameraRotateEnabled()
-    {
-        Camera.main.GetComponent<CamRotate>().enabled = true;
-
+        
+        
     }
 }
     

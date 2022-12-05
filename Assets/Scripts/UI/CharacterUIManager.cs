@@ -8,13 +8,18 @@ using static UnityEngine.GraphicsBuffer;
 public class CharacterUIManager : MonoBehaviour
 {
     public GameObject escUI;
+    public GameObject HelpUI;
+    public GameObject PlayerUI;
     public bool isESC = false;
     public bool isM = false;
+    public bool isHelp = false;
     float timer;
     float timer2;
+    float timer3;
     float waitingTime;
     bool isWait = false;
     bool isWait2 = false;
+    bool isWait3 = false;
     public GameObject MainCharacter;
     public GameObject MainCam;
     public GameObject MiniCam;
@@ -24,6 +29,7 @@ public class CharacterUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer3 = 0.0f;
         timer2 = 0.0f;
         timer = 0.0f;
         waitingTime = 0.2f;
@@ -33,6 +39,7 @@ public class CharacterUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer3 += Time.deltaTime;
         timer += Time.deltaTime;
         timer2 += Time.deltaTime;
 
@@ -47,27 +54,37 @@ public class CharacterUIManager : MonoBehaviour
             timer2 = 0;
             isWait2 = false;
         }
+        if (timer3 > waitingTime)
+        {
+            timer3 = 0;
+            isWait3 = false;
+        }
         isEsc();
         isMap();
+        isF1();
     }
 
     public void isEsc()
     {
         if (!isWait && isESC && Input.GetKey(KeyCode.Escape))
         {
+            PlayerUI.SetActive(true);
             escUI.SetActive(false);
             isESC = false;
             isWait = true;
             timer = 0.0f;
             MainCam.GetComponent<CamRotate>().enabled = true;
+            MainCharacter.GetComponent<PlayerMove>().enabled = true;
         }
         else if (!isWait && !isESC && Input.GetKey(KeyCode.Escape))
         {
+            PlayerUI.SetActive(false);
             isESC = true;
             escUI.SetActive(true);
             isWait = true;
             timer = 0.0f;
             MainCam.GetComponent<CamRotate>().enabled = false;
+            MainCharacter.GetComponent<PlayerMove>().enabled = false;
 
         }
     }
@@ -75,6 +92,7 @@ public class CharacterUIManager : MonoBehaviour
     {
         if (!isWait2 && isM && Input.GetKey(KeyCode.M))
         {
+            PlayerUI.SetActive(true);
             CharPlace.SetActive(false);
             MiniMap.SetActive(false);
             camera.enabled = false;
@@ -82,9 +100,11 @@ public class CharacterUIManager : MonoBehaviour
             isWait2 = true;
             timer2 = 0.0f;
             MainCam.GetComponent<CamRotate>().enabled = true;
+            MainCharacter.GetComponent<PlayerMove>().enabled = true;
         }
         else if (!isWait2 && !isM && Input.GetKey(KeyCode.M))
         {
+            PlayerUI.SetActive(false);
             CharPlace.SetActive(true);
             MiniMap.SetActive(true);
             MiniCam.transform.position = new Vector3(MainCharacter.transform.position.x, MiniCam.transform.position.y, MainCharacter.transform.position.z);
@@ -93,6 +113,31 @@ public class CharacterUIManager : MonoBehaviour
             isWait2 = true;
             timer2 = 0.0f;
             MainCam.GetComponent<CamRotate>().enabled = false;
+            MainCharacter.GetComponent<PlayerMove>().enabled = false;
+
+        }
+    }
+    public void isF1()
+    {
+        if (!isWait3 && isHelp && Input.GetKey(KeyCode.F1))
+        {
+            PlayerUI.SetActive(true);
+            HelpUI.SetActive(false);
+            isHelp = false;
+            isWait3 = true;
+            timer3 = 0.0f;
+            MainCam.GetComponent<CamRotate>().enabled = true;
+            MainCharacter.GetComponent<PlayerMove>().enabled = true;
+        }
+        else if (!isWait3 && !isHelp && Input.GetKey(KeyCode.F1))
+        {
+            PlayerUI.SetActive(false);
+            isHelp = true;
+            HelpUI.SetActive(true);
+            isWait3 = true;
+            timer3 = 0.0f;
+            MainCam.GetComponent<CamRotate>().enabled = false;
+            MainCharacter.GetComponent<PlayerMove>().enabled = false;
 
         }
     }

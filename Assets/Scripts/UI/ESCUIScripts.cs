@@ -10,6 +10,7 @@ public class ESCUIScripts : MonoBehaviour
     public GameObject MainCam;
     public GameObject MainCharacter;
     public GameObject Option;
+    public GameObject PlayerUI;
     bool isEsc; 
     
     private void Start()
@@ -19,6 +20,7 @@ public class ESCUIScripts : MonoBehaviour
 
     public void btnBack()
     {
+        PlayerUI.SetActive(true);
         obj1.SetActive(false);
         isEsc = false;
         MainCam.GetComponent<CamRotate>().enabled = true;
