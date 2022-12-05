@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ControllBrightness : MonoBehaviour
+public class SoundVolumeController : MonoBehaviour
 {
     public GameObject Scroll;
-    public GameObject light;
+    public GameObject Sound;
     Slider slider;
-    Light mainLight;
+    AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
         slider = Scroll.GetComponent<Slider>();
-        mainLight = light.GetComponent<Light>();
-        slider.value = mainLight.intensity / 2;
+        audio = Sound.GetComponent<AudioSource>();
+        slider.value = audio.volume;
     }
 
     // Update is called once per frame
     void Update()
     {
-        mainLight.intensity = slider.value * 2;
+        audio.volume = slider.value;
     }
 }
