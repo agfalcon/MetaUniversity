@@ -31,7 +31,7 @@ public class MapCam : MonoBehaviour
         {
             transform.position += new Vector3(0.0f, 0.0f, 1.5f);
         }
-        float scroll = Input.GetAxis("Mouse ScrollWheel") * 5.0f;
+        float scroll = Input.GetAxis("Mouse ScrollWheel") * 20.0f;
         if (scroll > 0 && cam.orthographicSize <= 20)
             return;
         if (scroll < 0 && cam.orthographicSize > 270)
