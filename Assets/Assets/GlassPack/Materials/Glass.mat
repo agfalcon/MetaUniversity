@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Glass
-  m_Shader: {fileID: 4800000, guid: 6d2ebd76acdeded41add975fa2d105ac, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: cd0574072cb5fbb4091ac136212a0edf, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _MAPPING_LATITUDE_LONGITUDE_LAYOUT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -67,21 +69,28 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _BumpScale: 1
     - _ChromaticAberration: 0.043
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FresnelPower: 9.3
+    - _Exposure: 1
+    - _FresnelPower: 11.5
     - _GlossMapScale: 1
     - _Glossiness: 1
     - _GlossyReflections: 1
+    - _ImageType: 0
+    - _Layout: 0
+    - _Mapping: 1
     - _Metallic: 0
+    - _MirrorOnBack: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Refraction: 2.3
+    - _Rotation: 0
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.5
@@ -91,8 +100,9 @@ Material:
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0, g: 0.40654182, b: 1, a: 0.41960785}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Specular: {r: 1, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.5176471}
+    - _Specular: {r: 0.8356621, g: 0.83673847, b: 0.8396226, a: 1}
+    - _Tint: {r: 0.6603774, g: 0.17132434, b: 0.17132434, a: 0.019607844}
   m_BuildTextureStacks: []

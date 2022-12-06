@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Glass 1
-  m_Shader: {fileID: 4800000, guid: 6d2ebd76acdeded41add975fa2d105ac, type: 3}
+  m_Shader: {fileID: 4800000, guid: c6047a3813690da42b21523612d64dfc, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -33,6 +33,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -72,6 +76,7 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _ChromaticAberration: 0.043
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -79,7 +84,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 1
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.086
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -90,11 +95,13 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _WindQuality: 0
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0, g: 0.656868, b: 1, a: 0.40392157}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _Specular: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
