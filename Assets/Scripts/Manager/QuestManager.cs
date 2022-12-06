@@ -121,6 +121,9 @@ public class QuestManager : MonoBehaviour
             case 1001:
                 NPC_1001_Quest();
                 break;
+            case 2005:
+                NPC_2005_Quest();
+                break;
             case 3000:
                 NPC_3000_Quest();
                 break;
@@ -198,6 +201,26 @@ public class QuestManager : MonoBehaviour
         QuestEndAndSuccess();
     }
 
+    void NPC_2005_Quest()
+    {
+        curQuestName_T.text = "이예림 찾아보기";
+        GameObject parentPos = GameObject.Find("NPC_Move_Pose"); // Find()는 비활성화 되어있는 객체는 찾지 못함
+        GameObject portal = parentPos.transform.GetChild(0).gameObject;
+
+        StartCoroutine(nameof(NPC_2005_QuestCor), portal);
+    }
+
+    IEnumerator NPC_2005_QuestCor(GameObject portal)
+    {
+        QuestPortal qp = portal.GetComponent<QuestPortal>();
+        
+        portal.SetActive(true);
+        yield return new WaitUntil(() => qp.isTrigger == true);
+        portal.SetActive(false);
+
+        QuestEndAndSuccess();
+    }
+
     void NPC_3000_Quest()
     {
         GameObject parentPos = GameObject.Find("QuestPosition"); // Find()는 비활성화 되어있는 객체는 찾지 못함
@@ -220,11 +243,10 @@ public class QuestManager : MonoBehaviour
         {
             QuestPortal qp = portal[curIndex].GetComponent<QuestPortal>();
 
-             portal[curIndex].SetActive(true);
-
+            portal[curIndex].SetActive(true);
             yield return new WaitUntil(() => qp.isTrigger == true); // qp의 isTrigger의 값이 true가 될때까지 대기
-
             portal[curIndex].SetActive(false);
+            
             curIndex++;
         }
 

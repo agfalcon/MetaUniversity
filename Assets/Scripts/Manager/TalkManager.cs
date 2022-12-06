@@ -47,8 +47,9 @@ public class TalkManager : MonoBehaviour
 
     bool isQuestTalk = false;
     bool isQuestTalkLast = false;
-
-    NPCTrigger npc;
+    
+    [HideInInspector]
+    public NPCTrigger npc;
 
     void Awake()
     {

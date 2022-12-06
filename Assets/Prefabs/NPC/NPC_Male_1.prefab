@@ -96,6 +96,7 @@ MonoBehaviour:
   parent: {fileID: 3148876539554309912}
   questionMark: {fileID: 2576157899382528529}
   exclaimMark: {fileID: 5837048317519470703}
+  interactionImg: {fileID: 0}
   npcName: "\uC900\uBC84\uB9AD"
   npcTalk:
   - "\uC548\uB155, \uB09C NPC \uC900\uBC84\uB9AD. \uB9CC\uB098\uC11C \uBC18\uAC00\uC6CC."

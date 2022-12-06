@@ -129,6 +129,11 @@ public class PlayerMove : MonoBehaviour
             isWalk = true;
             currentSpeed = walkSpeed;
         }
+        else if (isF)
+        {
+            isWalk = false;
+            currentSpeed = 0f;
+        }
         else isWalk = false;
 
         if (!isRun && Input.GetButton("LShift") && stat >= 0.5)

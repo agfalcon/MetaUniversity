@@ -49,6 +49,8 @@ public class NPCTrigger : MonoBehaviour
         {
             SetQuestList();
         }
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void SetQuestList()
@@ -75,6 +77,9 @@ public class NPCTrigger : MonoBehaviour
         {
             isTriggerInPlayer = true;
             npcMove.isMoving = false;
+
+            InteractionManager.Instance.inTalkArea = true;
+            InteractionManager.Instance.SetInteractionImg();
         }
     }
 
@@ -92,6 +97,9 @@ public class NPCTrigger : MonoBehaviour
         {
             isTriggerInPlayer = false;
             npcMove.isMoving = true;
+
+            InteractionManager.Instance.inTalkArea = false;
+            InteractionManager.Instance.SetInteractionImg();
         }
     }
 
@@ -107,7 +115,7 @@ public class NPCTrigger : MonoBehaviour
 
     void FirstTalkWithPlayer()
     {
-        if (Input.GetKeyDown(KeyCode.F) && !PlayerMove.Instance.isF && !TalkManager.Instance.isTalk)
+        if (Input.GetKeyDown(KeyCode.F) && !PlayerMove.Instance.isF && !TalkManager.Instance.isTalk && npcTalk.Length != 0)
         {
             TalkManager.Instance.FirstInteractWithPlayer(this);
             TalkManager.Instance.TalkOrQuest(0);
