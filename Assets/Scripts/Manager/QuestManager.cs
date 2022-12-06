@@ -206,17 +206,34 @@ public class QuestManager : MonoBehaviour
         curQuestName_T.text = "이예림 찾아보기";
         GameObject parentPos = GameObject.Find("NPC_Move_Pose"); // Find()는 비활성화 되어있는 객체는 찾지 못함
         GameObject portal = parentPos.transform.GetChild(0).gameObject;
-
+        
         StartCoroutine(nameof(NPC_2005_QuestCor), portal);
     }
 
     IEnumerator NPC_2005_QuestCor(GameObject portal)
     {
+        string[] text = { "와 축하해주러 온거야?",
+                          "고마워 ~ ♥ 열심히 할게!!"};
         QuestPortal qp = portal.GetComponent<QuestPortal>();
         
         portal.SetActive(true);
-        yield return new WaitUntil(() => qp.isTrigger == true);
-        portal.SetActive(false);
+        TalkManager.Instance.isTalk = true;
+
+        Debug.Log("!isTrigger");
+        while (true)
+        {
+            if (qp.isTrigger)
+            {
+                Debug.Log("isTrigger");
+                TalkManager.Instance.isTalk = false;
+                TalkManager.Instance.TalkOrQuest(text);
+                portal.SetActive(false);
+                break;
+            }
+            yield return null;
+        }
+        yield return new WaitUntil(() => TalkManager.Instance.isTalk == false);
+
 
         QuestEndAndSuccess();
     }
@@ -252,5 +269,4 @@ public class QuestManager : MonoBehaviour
 
         QuestEndAndSuccess();
     }
-
 }
