@@ -90,10 +90,8 @@ public class LoadWeather : MonoBehaviour
             RenderSettings.skybox = mat[1];
         else if (condition.Equals("Clouds")) // sky - 4
             RenderSettings.skybox = mat[2];
-        else if (condition.Equals("Mist")) // sky - 3
-            RenderSettings.skybox = mat[3];
         else if (condition.Equals("Snow")) // sky - 11
-            RenderSettings.skybox = mat[4];
+            RenderSettings.skybox = mat[3];
         else
             RenderSettings.skybox = mat[0]; // sky - 1
 

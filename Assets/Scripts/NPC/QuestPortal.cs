@@ -12,6 +12,7 @@ public class QuestPortal : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isTrigger = true;
+            transform.gameObject.GetComponent<AudioSource>().Play();
         }
     }
 }

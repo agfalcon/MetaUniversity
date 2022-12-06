@@ -36,7 +36,8 @@ public class MySceneManager : MonoBehaviour
 
     public void LoadScene()
     {
-        PlayerMove.Instance.isF = true;
+        CharacterUIManager.Instance.SetPlayerMoveAndRotate(false);
+
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 0:
@@ -72,6 +73,6 @@ public class MySceneManager : MonoBehaviour
             yield return null;
         }
 
-        PlayerMove.Instance.isF = false;
+        CharacterUIManager.Instance.SetPlayerMoveAndRotate(true);
     }
 }

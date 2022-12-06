@@ -26,7 +26,8 @@ public class NPCTrigger : MonoBehaviour
     public Dictionary<int, string[]> npcQuestList;
     public Dictionary<int, string[]> npcQuestDescList;
 
-    bool isTriggerInPlayer = false;
+    [HideInInspector]
+    public bool isTriggerInPlayer = false;
 
     void Awake()
     {

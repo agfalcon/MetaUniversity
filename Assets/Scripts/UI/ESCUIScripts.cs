@@ -11,21 +11,25 @@ public class ESCUIScripts : MonoBehaviour
     public GameObject MainCharacter;
     public GameObject Option;
     public GameObject PlayerUI;
-    bool isEsc; 
-    
+    bool isEsc;
+
     private void Start()
     {
-        isEsc= MainCharacter.GetComponent<CharacterUIManager>().isESC;
+        isEsc = MainCharacter.GetComponent<CharacterUIManager>().isESC;
     }
 
     public void btnBack()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         PlayerUI.SetActive(true);
         obj1.SetActive(false);
         isEsc = false;
         MainCam.GetComponent<CamRotate>().enabled = true;
+        MainCharacter.GetComponent<PlayerRotate>().enabled = true;
+        MainCharacter.GetComponent<PlayerMove>().enabled = true;
     }
-    
+
     public void btnSetting()
     {
         Option.SetActive(true);
@@ -35,15 +39,12 @@ public class ESCUIScripts : MonoBehaviour
     {
         Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
         StartCoroutine(LoadMyAsyncScene());
-        //SceneManager.LoadScene("Kumoh_Main");
     }
 
     IEnumerator LoadMyAsyncScene()
     {
-        // AsyncOperation을 통해 Scene Load 정도를 알 수 있다.
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Kumoh_Main");
 
-        // Scene을 불러오는 것이 완료되면, AsyncOperation은 isDone 상태가 된다.
         while (!asyncLoad.isDone)
         {
             yield return null;

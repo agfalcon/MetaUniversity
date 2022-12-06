@@ -16,7 +16,7 @@ public class StartGame : MonoBehaviour
         obj1.SetActive(false);
         uiData = UIDataO.GetComponent<UIData>();
         uiData.isStart = true;
-        MainCharacter.SetActive(true);
+        MainCharacter.GetComponent<AudioSource>().Play();
         PlayerUI.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
