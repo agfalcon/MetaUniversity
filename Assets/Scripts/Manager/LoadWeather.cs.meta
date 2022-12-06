@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/LoadWeather.cs.meta
+guid: d4030ac1d4542cd42bf6e260def010bb
+========
+guid: 8e86f6bffba34284b8255fade654ce83
+>>>>>>>> JSG_NEW:Assets/Scripts/UI/CharacterUIManager.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
