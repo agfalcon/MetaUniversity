@@ -75,11 +75,11 @@ public class LoadWeather : MonoBehaviour
                     Double temperutre = Double.Parse(temperture);
                     temperutre = temperutre - 273;
 
-                    Debug.Log(cityname);
+                    /*Debug.Log(cityname);
                     Debug.Log("condition : "+condition );
                     Debug.Log("condition_description : "+condition_description);
                     Debug.Log("temperture : "+temperutre);
-                    Debug.Log("windspeed : "+windspeed);                
+                    Debug.Log("windspeed : "+windspeed);*/           
                 }
             }
         }
