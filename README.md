@@ -104,4 +104,8 @@ https://www.youtube.com/watch?v=v5l_IptxKSk
 	- openweather Api 연동
 
 
+# Insight
+![image](https://user-images.githubusercontent.com/98202797/206202852-6ba2cd28-be09-47f7-9065-77aa81931ad2.png)
+
+![image](https://user-images.githubusercontent.com/98202797/206202928-5bf7794e-bf9b-4359-afa1-19e1e6975be8.png)
 
