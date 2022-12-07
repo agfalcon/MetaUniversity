@@ -27,6 +27,11 @@ https://www.youtube.com/watch?v=v5l_IptxKSk
 
 # 사용 에셋
 
+### 색상 및 질감 (Mesh & Meterial)
+- !Materials Collection
+- GlassPack
+
+
 ### 건물 및 주변환경
 - Brick Project Studio
 - BrokenVector
@@ -43,6 +48,10 @@ https://www.youtube.com/watch?v=v5l_IptxKSk
 - Kevin Iglesias
 - NPC Asset
 - TextMesh Pro
+
+### 배경 및 하늘
+- 8K Skybox Pack Free
+
 
 
 # 사용 오픈소스
