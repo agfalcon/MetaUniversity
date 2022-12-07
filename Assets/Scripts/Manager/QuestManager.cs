@@ -224,9 +224,9 @@ public class QuestManager : MonoBehaviour
         {
             if (qp.isTrigger)
             {
-                Debug.Log("isTrigger");
                 TalkManager.Instance.isTalk = false;
                 TalkManager.Instance.TalkOrQuest(text);
+                yield return new WaitUntil(() => qp.isTrigger == true && !qp.GetComponent<AudioSource>().isPlaying);
                 portal.SetActive(false);
                 break;
             }
@@ -261,7 +261,7 @@ public class QuestManager : MonoBehaviour
             QuestPortal qp = portal[curIndex].GetComponent<QuestPortal>();
 
             portal[curIndex].SetActive(true);
-            yield return new WaitUntil(() => qp.isTrigger == true); // qp의 isTrigger의 값이 true가 될때까지 대기
+            yield return new WaitUntil(() => qp.isTrigger == true && !qp.GetComponent<AudioSource>().isPlaying); // qp의 isTrigger의 값이 true가 될때까지 대기
             portal[curIndex].SetActive(false);
             
             curIndex++;
