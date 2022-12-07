@@ -27,7 +27,7 @@ https://www.youtube.com/watch?v=v5l_IptxKSk
 
 # 사용 에셋
 
-### 색상 및 질감 (Mesh & Meterial)
+### 색상 및 질감 (Mesh & Material)
 - !Materials Collection
 - GlassPack
 
