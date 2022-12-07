@@ -212,8 +212,8 @@ public class QuestManager : MonoBehaviour
 
     IEnumerator NPC_2005_QuestCor(GameObject portal)
     {
-        string[] text = { "와 축하해주러 온거야?",
-                          "고마워 ~ ♥ 열심히 할게!!"};
+        string[] text = { "엇! 안녕!", "와! 축하해주러 온거야?",
+                          "고마워 ~ ♥ 열심히 할게!!", "금오버시티에서 좋은 하루 보내ㅎㅎ"};
         QuestPortal qp = portal.GetComponent<QuestPortal>();
         
         portal.SetActive(true);
