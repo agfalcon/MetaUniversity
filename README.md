@@ -26,7 +26,22 @@
 
 # 사용 에셋
 
-<br>
+### 건물 및 주변환경
+- Brick Project Studio
+- BrokenVector
+- CherryBlossom
+- Darth_Artisan
+- Fence 4 Pack FREE
+- gate
+- Polytope Studio
+- Fantasy Skybox FREE
+- Fence 4 Pack FREE
+
+### NPC 및 캐릭터 / 상호작용
+- AnimeGirls
+- Kevin Iglesias
+- NPC Asset
+​- TextMesh Pro
 
 
 # 사용 오픈소스
