@@ -3,19 +3,16 @@
 - ver.1.0.1
 - Web GL 및 Windows 환경에서 실행
 
-
-- 해당 GitHub Repository 의 메인 페이지에 Readme를 만들어서 해당 프로젝트를 어떻게 활용할 수 있는지 설명
-- 사용한 오픈소스/asset 등이 어떤 것이 있고.. 해당오픈소스의 어떤 버전을 활용했고 등등
 <br>
 
 
 # 시연 영상
-
-
+https://www.youtube.com/watch?v=v5l_IptxKSk
 <br>
 
 
 # 게임 화면
+![image](https://user-images.githubusercontent.com/98202797/206194026-ad01b30c-0956-44bb-907e-58f6dce213bd.png)
 
 <br>
 
