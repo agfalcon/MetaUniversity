@@ -8,6 +8,15 @@ public class Teleport : MonoBehaviour
 {
     AsyncOperation asyncLoad;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            InteractionManager.Instance.inTelePortArea = true;
+            InteractionManager.Instance.SetInteractionImg();
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -16,6 +25,15 @@ public class Teleport : MonoBehaviour
             {
                 MySceneManager.Instance.LoadScene();
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            InteractionManager.Instance.inTelePortArea = false;
+            InteractionManager.Instance.SetInteractionImg();
         }
     }
 
