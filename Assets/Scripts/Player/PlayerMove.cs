@@ -24,8 +24,14 @@ public class PlayerMove : MonoBehaviour
     public float stat = 5f; // 스태미너
     [HideInInspector]
     public float maxStat = 5f; // 최대 스태미너
+    [HideInInspector]
+    public string playerName;
+    [HideInInspector]
+    public float curScore = 0f;
+    float maxScore = 15f;
 
     public Image statImg; // 스태미너 게이지
+    public Image heartImg;
 
     CharacterController cc;
     Animator anim;
@@ -169,5 +175,11 @@ public class PlayerMove : MonoBehaviour
     public void SetMoveSpeed(float speed)
     {
         currentSpeed = speed;
+    }
+
+    public void SetHeartFill(float score)
+    {
+        curScore += score;
+        heartImg.fillAmount = curScore / maxScore;
     }
 }

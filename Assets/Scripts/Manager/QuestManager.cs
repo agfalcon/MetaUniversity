@@ -87,15 +87,6 @@ public class QuestManager : MonoBehaviour
         curQuestDo_T.text = "";
     }
 
-    void UpdateQuestList()
-    {
-        curQuestList.SetActive(true);
-        curQuestName_T.text = curQuestName;
-        foreach(var txt in curNpc.npcQuestDescList[curNpc.currentQuestIndex])
-        {
-            curQuestDo_T.text += txt + '\n';
-        }
-    }
 
     public void QuestEnter(NPCTrigger npc)
     {
@@ -104,7 +95,6 @@ public class QuestManager : MonoBehaviour
         curQuestName = npc.npcQuestList[npc.currentQuestIndex][0];
         
         QuestUIControll(true);
-        UpdateQuestList();
 
         Questing();
     }

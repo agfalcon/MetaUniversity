@@ -19,15 +19,6 @@ public class NPCNameCotroller : MonoBehaviour
 
     void Update()
     {
-        if(TalkManager.Instance.npc.npcName == "이예림[회장(진)]")
-        {
-            nameBox.sizeDelta = new Vector2(455, 100);
-            nameText.anchoredPosition = new Vector2(245, -68);
-        }
-        else
-        {
-            nameBox.sizeDelta = new Vector2(originSize[0], originSize[1]);
-            nameText.anchoredPosition = new Vector2(originSize[2], originSize[3]);
-        }
+        
     }
 }

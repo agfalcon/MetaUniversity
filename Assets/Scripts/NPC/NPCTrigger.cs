@@ -11,20 +11,23 @@ public class NPCTrigger : MonoBehaviour
     public GameObject exclaimMark;
 
     // NPC 이름 및 기본 대화
-    public string npcName;
+    public string[] npcName;
     public string[] npcTalk;
 
-    // NPC 퀘스트 대화(한 배열에 한 퀘스트 씩, 첫 문장은 퀘스트 이름으로 쓸 것), npcQuestTalk와 npcQuestDesc는 Length(개수)가 같아야 함
+    // NPC 퀘스트 대화(questBox: 박스 목록에 들어갈 텍스트 입력, npcQuestTalk: 박스 선택 시 진행되는 대화 입력)
+    public string[] questBox;
+    public string[] npcQuestTalkName;
     public string[] npcQuestTalk;
-    public string[] npcQuestDesc;
     
     [HideInInspector]
     public int currentQuestIndex = 0;
     [HideInInspector]
     public int npcQuestIndex = 0;
+    [HideInInspector]
+    public int npcQuestTalkNameIndex = 0;
 
     public Dictionary<int, string[]> npcQuestList;
-    public Dictionary<int, string[]> npcQuestDescList;
+    public Dictionary<int, string[]> npcQuestTalkNameList;
 
     [HideInInspector]
     public bool isTriggerInPlayer = false;
@@ -46,7 +49,7 @@ public class NPCTrigger : MonoBehaviour
 
     void FirstSetting()
     {
-        if(npcQuestTalk.Length != 0 && npcQuestDesc.Length != 0)
+        if(npcQuestTalk.Length != 0)
         {
             SetQuestList();
         }
@@ -57,18 +60,22 @@ public class NPCTrigger : MonoBehaviour
     void SetQuestList()
     {
         npcQuestList = new Dictionary<int, string[]>();
-        npcQuestDescList = new Dictionary<int, string[]>();
+        npcQuestTalkNameList = new Dictionary<int, string[]>();
 
-        foreach (string q in npcQuestTalk)
+        for (int i = 0; i < questBox.Length; i++)
         {
-            string[] quest = q.Split("//");
-            string[] desc = npcQuestDesc[npcQuestIndex].Split("//");
-            
-            npcQuestList.Add(npcQuestIndex, quest);
-            npcQuestDescList.Add(npcQuestIndex, desc);
+            string[] questTalk = npcQuestTalk[i].Split("//");
+
+            npcQuestList.Add(npcQuestIndex, questTalk);
             npcQuestIndex++;
         }
 
+        for (int i = 0; i < npcQuestTalkName.Length; i++)
+        {
+            string[] temp = npcQuestTalkName[i].Split("//");
+            npcQuestTalkNameList.Add(npcQuestTalkNameIndex, temp);
+            npcQuestTalkNameIndex++;
+        }
         questionMark.SetActive(true);
     }
 
