@@ -377,7 +377,6 @@ public class TalkManager : MonoBehaviour
     void QuestTalkEnter()
     {
         isQuestTalk = true;
-
         NPCChatExit();
         TalkOrQuest(1);
     }
@@ -440,8 +439,8 @@ public class TalkManager : MonoBehaviour
     public void ClickedSubmitButton()
     {
         isTalk = true;
-        userOpinion.SetActive(false);
         userOpinionText.text = "";
+        userOpinion.SetActive(false);
         MouseSetONOFF(false);
         QuestTalkEnter(4);
     }

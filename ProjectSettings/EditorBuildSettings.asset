@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kumoh_Main.unity
     guid: ad8cd9a4fcc47b744ba16fc30c229e95
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Digital-H.unity
     guid: d9c76f93f3e3e6747937ae5d57625da3
   m_configObjects: {}

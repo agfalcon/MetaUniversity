@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +33,7 @@ public class PlayerMove : MonoBehaviour
 
     public Image statImg; // 스태미너 게이지
     public Image heartImg;
+    public TMP_Text scoreRate;
 
     CharacterController cc;
     Animator anim;
@@ -181,5 +183,6 @@ public class PlayerMove : MonoBehaviour
     {
         curScore += score;
         heartImg.fillAmount = curScore / maxScore;
+        scoreRate.text = ((curScore / maxScore) * 100).ToString() + "%";
     }
 }
