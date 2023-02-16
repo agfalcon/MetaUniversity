@@ -1,116 +1,326 @@
 fileFormatVersion: 2
 guid: 6d53a488351422c4b9e379c87bd0c523
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Chest
-    100004: Fingers1L
-    100006: Fingers1R
-    100008: Fingers2L
-    100010: Fingers2L_end
-    100012: Fingers2R
-    100014: Fingers2R_end
-    100016: FootL
-    100018: FootL_end
-    100020: FootR
-    100022: FootR_end
-    100024: HandL
-    100026: HandR
-    100028: Head
-    100030: Head_end
-    100032: Hip
-    100034: Hip_end
-    100036: IndexFinger1L
-    100038: IndexFinger1R
-    100040: IndexFinger2L
-    100042: IndexFinger2L_end
-    100044: IndexRinger2R
-    100046: IndexRinger2R_end
-    100048: LoweArmL
-    100050: LoweArmR
-    100052: Neck
-    100054: ShinL
-    100056: ShinR
-    100058: ShoulderL
-    100060: ShoulderR
-    100062: Spine
-    100064: ThighL
-    100066: ThighR
-    100068: Thumb1
-    100070: Thumb1R
-    100072: Thumb2
-    100074: Thumb2_end
-    100076: Thumb2R
-    100078: Thumb2R_end
-    100080: UpperArmL
-    100082: UpperArmR
-    100084: Armature
-    100086: Body
-    400000: //RootNode
-    400002: Chest
-    400004: Fingers1L
-    400006: Fingers1R
-    400008: Fingers2L
-    400010: Fingers2L_end
-    400012: Fingers2R
-    400014: Fingers2R_end
-    400016: FootL
-    400018: FootL_end
-    400020: FootR
-    400022: FootR_end
-    400024: HandL
-    400026: HandR
-    400028: Head
-    400030: Head_end
-    400032: Hip
-    400034: Hip_end
-    400036: IndexFinger1L
-    400038: IndexFinger1R
-    400040: IndexFinger2L
-    400042: IndexFinger2L_end
-    400044: IndexRinger2R
-    400046: IndexRinger2R_end
-    400048: LoweArmL
-    400050: LoweArmR
-    400052: Neck
-    400054: ShinL
-    400056: ShinR
-    400058: ShoulderL
-    400060: ShoulderR
-    400062: Spine
-    400064: ThighL
-    400066: ThighR
-    400068: Thumb1
-    400070: Thumb1R
-    400072: Thumb2
-    400074: Thumb2_end
-    400076: Thumb2R
-    400078: Thumb2R_end
-    400080: UpperArmL
-    400082: UpperArmR
-    400084: Armature
-    400086: Body
-    2100000: mouth_inside
-    2100002: Eye_reflection
-    2100004: Eyeliner
-    2100006: Eyelashes
-    2100008: Eyebrows
-    2100010: EyeBack
-    2100012: Eye
-    2100014: Face
-    2100016: Body
-    2100018: Hair_head
-    2300000: Body
-    3300000: Body
-    4300000: Body
-    7400000: Armature|Idle
-    9500000: //RootNode
-    13700000: Body
-    2186277476908879412: ImportLogs
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Chest
+  - first:
+      1: 100004
+    second: Fingers1L
+  - first:
+      1: 100006
+    second: Fingers1R
+  - first:
+      1: 100008
+    second: Fingers2L
+  - first:
+      1: 100010
+    second: Fingers2L_end
+  - first:
+      1: 100012
+    second: Fingers2R
+  - first:
+      1: 100014
+    second: Fingers2R_end
+  - first:
+      1: 100016
+    second: FootL
+  - first:
+      1: 100018
+    second: FootL_end
+  - first:
+      1: 100020
+    second: FootR
+  - first:
+      1: 100022
+    second: FootR_end
+  - first:
+      1: 100024
+    second: HandL
+  - first:
+      1: 100026
+    second: HandR
+  - first:
+      1: 100028
+    second: Head
+  - first:
+      1: 100030
+    second: Head_end
+  - first:
+      1: 100032
+    second: Hip
+  - first:
+      1: 100034
+    second: Hip_end
+  - first:
+      1: 100036
+    second: IndexFinger1L
+  - first:
+      1: 100038
+    second: IndexFinger1R
+  - first:
+      1: 100040
+    second: IndexFinger2L
+  - first:
+      1: 100042
+    second: IndexFinger2L_end
+  - first:
+      1: 100044
+    second: IndexRinger2R
+  - first:
+      1: 100046
+    second: IndexRinger2R_end
+  - first:
+      1: 100048
+    second: LoweArmL
+  - first:
+      1: 100050
+    second: LoweArmR
+  - first:
+      1: 100052
+    second: Neck
+  - first:
+      1: 100054
+    second: ShinL
+  - first:
+      1: 100056
+    second: ShinR
+  - first:
+      1: 100058
+    second: ShoulderL
+  - first:
+      1: 100060
+    second: ShoulderR
+  - first:
+      1: 100062
+    second: Spine
+  - first:
+      1: 100064
+    second: ThighL
+  - first:
+      1: 100066
+    second: ThighR
+  - first:
+      1: 100068
+    second: Thumb1
+  - first:
+      1: 100070
+    second: Thumb1R
+  - first:
+      1: 100072
+    second: Thumb2
+  - first:
+      1: 100074
+    second: Thumb2_end
+  - first:
+      1: 100076
+    second: Thumb2R
+  - first:
+      1: 100078
+    second: Thumb2R_end
+  - first:
+      1: 100080
+    second: UpperArmL
+  - first:
+      1: 100082
+    second: UpperArmR
+  - first:
+      1: 100084
+    second: Armature
+  - first:
+      1: 100086
+    second: Body
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Chest
+  - first:
+      4: 400004
+    second: Fingers1L
+  - first:
+      4: 400006
+    second: Fingers1R
+  - first:
+      4: 400008
+    second: Fingers2L
+  - first:
+      4: 400010
+    second: Fingers2L_end
+  - first:
+      4: 400012
+    second: Fingers2R
+  - first:
+      4: 400014
+    second: Fingers2R_end
+  - first:
+      4: 400016
+    second: FootL
+  - first:
+      4: 400018
+    second: FootL_end
+  - first:
+      4: 400020
+    second: FootR
+  - first:
+      4: 400022
+    second: FootR_end
+  - first:
+      4: 400024
+    second: HandL
+  - first:
+      4: 400026
+    second: HandR
+  - first:
+      4: 400028
+    second: Head
+  - first:
+      4: 400030
+    second: Head_end
+  - first:
+      4: 400032
+    second: Hip
+  - first:
+      4: 400034
+    second: Hip_end
+  - first:
+      4: 400036
+    second: IndexFinger1L
+  - first:
+      4: 400038
+    second: IndexFinger1R
+  - first:
+      4: 400040
+    second: IndexFinger2L
+  - first:
+      4: 400042
+    second: IndexFinger2L_end
+  - first:
+      4: 400044
+    second: IndexRinger2R
+  - first:
+      4: 400046
+    second: IndexRinger2R_end
+  - first:
+      4: 400048
+    second: LoweArmL
+  - first:
+      4: 400050
+    second: LoweArmR
+  - first:
+      4: 400052
+    second: Neck
+  - first:
+      4: 400054
+    second: ShinL
+  - first:
+      4: 400056
+    second: ShinR
+  - first:
+      4: 400058
+    second: ShoulderL
+  - first:
+      4: 400060
+    second: ShoulderR
+  - first:
+      4: 400062
+    second: Spine
+  - first:
+      4: 400064
+    second: ThighL
+  - first:
+      4: 400066
+    second: ThighR
+  - first:
+      4: 400068
+    second: Thumb1
+  - first:
+      4: 400070
+    second: Thumb1R
+  - first:
+      4: 400072
+    second: Thumb2
+  - first:
+      4: 400074
+    second: Thumb2_end
+  - first:
+      4: 400076
+    second: Thumb2R
+  - first:
+      4: 400078
+    second: Thumb2R_end
+  - first:
+      4: 400080
+    second: UpperArmL
+  - first:
+      4: 400082
+    second: UpperArmR
+  - first:
+      4: 400084
+    second: Armature
+  - first:
+      4: 400086
+    second: Body
+  - first:
+      21: 2100000
+    second: mouth_inside
+  - first:
+      21: 2100002
+    second: Eye_reflection
+  - first:
+      21: 2100004
+    second: Eyeliner
+  - first:
+      21: 2100006
+    second: Eyelashes
+  - first:
+      21: 2100008
+    second: Eyebrows
+  - first:
+      21: 2100010
+    second: EyeBack
+  - first:
+      21: 2100012
+    second: Eye
+  - first:
+      21: 2100014
+    second: Face
+  - first:
+      21: 2100016
+    second: Body
+  - first:
+      21: 2100018
+    second: Hair_head
+  - first:
+      23: 2300000
+    second: Body
+  - first:
+      33: 3300000
+    second: Body
+  - first:
+      43: 4300000
+    second: Body
+  - first:
+      74: 7400000
+    second: Armature|Idle
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Body
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -119,6 +329,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -135,7 +346,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Idle
+      takeName: Armature|Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -143,25 +383,34 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -170,10 +419,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Armature
       humanName: Hips
@@ -651,13 +900,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

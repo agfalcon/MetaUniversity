@@ -28,7 +28,7 @@ public class PlayerMove : MonoBehaviour
     public string playerName;
     [HideInInspector]
     public float curScore = 0f;
-    float maxScore = 15f;
+    public float maxScore = 6f;
 
     public Image statImg; // 스태미너 게이지
     public Image heartImg;

@@ -30,6 +30,7 @@ public class TalkManager : MonoBehaviour
     public TMP_Text nameText;
     public TMP_Text[] questBtnText;
     public TMP_Text skipText;
+    public ParticleSystem ps;
 
     public bool isTalk = false;
     [HideInInspector]
@@ -54,6 +55,7 @@ public class TalkManager : MonoBehaviour
 
     bool isQuestTalk = false;
     bool isQuestTalkLast = false;
+    bool isTrue = false;
 
     float score;
     
@@ -114,12 +116,21 @@ public class TalkManager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                QuestBtnActive(false);
-                onQuestBtn = false;
-                //InputTextOut(QuestTalkEnter);
-                userOpinion.SetActive(true);
-                MouseSetONOFF(true);
-                //QuestTalkEnter(4);
+                if (!npc.isQuiz)
+                {
+                    QuestBtnActive(false);
+                    onQuestBtn = false;
+                    userOpinion.SetActive(true);
+                    MouseSetONOFF(true);
+                    isTalk = false;
+                }
+                else
+                {
+                    QuestBtnActive(false);
+                    onQuestBtn = false;
+                    QuestTalkEnter(4);
+                }
+                
             }
         }
         TalkSkipOrNext();
@@ -140,13 +151,6 @@ public class TalkManager : MonoBehaviour
             PlayerMove.Instance.GetComponent<PlayerRotate>().enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
         }
-    }
-
-    delegate void MyDelegate(int index);
-
-    void InputTextOut(MyDelegate QuestTalkEnter)
-    {
-        QuestTalkEnter(4);
     }
 
     public void FirstInteractWithPlayer(NPCTrigger npcTrigger)
@@ -170,8 +174,6 @@ public class TalkManager : MonoBehaviour
         {
             questBtn[i].SetActive(active);
         }
-
-        Debug.Log($"QuestBtnActive {active}");
     }
 
     void QuestBtnInputText()
@@ -180,7 +182,6 @@ public class TalkManager : MonoBehaviour
         {
             questBtnText[i].text = $"({i + 1}) " + questBox[i];
         }
-        Debug.Log("QuestBtnInputText End");
     }
 
     void IsPlayerName(string name)
@@ -201,18 +202,21 @@ public class TalkManager : MonoBehaviour
     public void NPCChatEnter(string npcName)
     {
         isTalk = true;
+        isTrue = false;
         npcTalk_OR_Quest_Index = 0;
         npcNameIndex = 0;
         UIOnOFF(isTalk);
 
         IsPlayerName(npcName);
         PlayerMove.Instance.SetMoveSpeed(0);
+
+        npc.GetComponentInParent<Animator>().SetBool("isTalk", true);
     }
 
     public void NPCChat(string npcTalk)
     {
         skipText.text = "Skip(Space bar)";
-        IsPlayerName(curNpcName_List[npcNameIndex]);
+        IsPlayerName(curNpcName_List[npcNameIndex] == "O" ? curNpcName_List[npcNameIndex - 1] : curNpcName_List[npcNameIndex]);
         npcNameIndex++;
         dropDownImg.SetActive(false);
         StartCoroutine(nameof(TalkRoutine), npcTalk);
@@ -227,6 +231,8 @@ public class TalkManager : MonoBehaviour
         isTalk = false;
         PlayerMove.Instance.isF = false;
         PlayerMove.Instance.SetMoveSpeed(PlayerMove.Instance.walkSpeed);
+
+        npc.GetComponentInParent<Animator>().SetBool("isTalk", false);
 
         UIOnOFF(isTalk);
     }
@@ -300,11 +306,15 @@ public class TalkManager : MonoBehaviour
     {
         if (npcTalk_OR_Quest_List[npcTalk_OR_Quest_List.Length - 1] == "O")
         {
+            isTrue = true;
+            npc.isQuestExist = false;
             score = 1f;
             PlayerMove.Instance.SetHeartFill(score);
         }
         else if (npcTalk_OR_Quest_List[npcTalk_OR_Quest_List.Length - 1] == "OO")
         {
+            isTrue = true;
+            npc.isQuestExist = false;
             score = 1.5f;
             PlayerMove.Instance.SetHeartFill(score);
         }
@@ -338,7 +348,7 @@ public class TalkManager : MonoBehaviour
             {
                 skipText.text = "";
 
-                if (currentQuestIndex < npcQuestIndex && !QuestManager.Instance.isQuesting && !isQuestTalk) // 수행할 수 있는 퀘스트가 존재하고 현재 플레이어가 다른 퀘스트를 하고 있지 않은 경우
+                if (npc.isQuestExist && !QuestManager.Instance.isQuesting && !isQuestTalk) // 수행할 수 있는 퀘스트가 존재하고 현재 플레이어가 다른 퀘스트를 하고 있지 않은 경우
                 {
                     npcTalkText.text = "";
                     nameText.text = PlayerMove.Instance.playerName;
@@ -350,7 +360,6 @@ public class TalkManager : MonoBehaviour
                 {
                     skipText.text = "대화종료(Space bar)";
                     isQuestTalkLast = true;
-                    npc.questionMark.SetActive(false);
                 }
                 else // 기본 NPC의 대화가 마지막인 경우
                 {
@@ -385,7 +394,30 @@ public class TalkManager : MonoBehaviour
     {
         isQuestTalk = false;
         isQuestTalkLast = false;
+
+        if (isTrue)
+        {
+            npc.ps.SetActive(true);
+            npc.questionMark.SetActive(false);
+
+            StartCoroutine(nameof(ActiveFalseParticle));
+        }
+
         NPCChatExit();
+
+        if (PlayerMove.Instance.curScore >= PlayerMove.Instance.maxScore) QuestManager.Instance.SuccessQuest();
+    }
+
+    IEnumerator ActiveFalseParticle()
+    {
+        float time = 0f;
+
+        while(time <= 2f)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+        npc.ps.SetActive(false);
     }
 
     public void QuickStopChat(string npcTalk)
@@ -407,6 +439,7 @@ public class TalkManager : MonoBehaviour
 
     public void ClickedSubmitButton()
     {
+        isTalk = true;
         userOpinion.SetActive(false);
         userOpinionText.text = "";
         MouseSetONOFF(false);

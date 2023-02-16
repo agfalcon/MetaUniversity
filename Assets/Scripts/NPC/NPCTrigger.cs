@@ -9,6 +9,7 @@ public class NPCTrigger : MonoBehaviour
     public GameObject parent;
     public GameObject questionMark;
     public GameObject exclaimMark;
+    public GameObject ps;
 
     // NPC 이름 및 기본 대화
     public string[] npcName;
@@ -28,7 +29,9 @@ public class NPCTrigger : MonoBehaviour
 
     public Dictionary<int, string[]> npcQuestList;
     public Dictionary<int, string[]> npcQuestTalkNameList;
-
+    
+    public bool isQuiz = false;
+    public bool isQuestExist = true;
     [HideInInspector]
     public bool isTriggerInPlayer = false;
 

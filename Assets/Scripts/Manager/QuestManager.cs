@@ -130,7 +130,7 @@ public class QuestManager : MonoBehaviour
         QuestUIControll(false);
     }
 
-    void SuccessQuest()
+    public void SuccessQuest()
     {
         PlayerMove.Instance.maxStat += 0.5f; // 퀘스트 성공 시 캐릭터 스태미너 0.5씩 증가
 
@@ -143,7 +143,7 @@ public class QuestManager : MonoBehaviour
         float time = 0f;
         Color color = successImg.GetComponent<Image>().color;
 
-        while (time <= 8f)
+        while (time <= 5f)
         {
             time += Time.deltaTime;
 
@@ -152,7 +152,7 @@ public class QuestManager : MonoBehaviour
                 color.a += Time.deltaTime / 1f;
                 successImg.GetComponent<Image>().color = color;
             }
-            else if(time > 7f) // fade Out
+            else if(time > 4f) // fade Out
             {
                 color.a -= Time.deltaTime / 1f;
                 successImg.GetComponent<Image>().color = color;
