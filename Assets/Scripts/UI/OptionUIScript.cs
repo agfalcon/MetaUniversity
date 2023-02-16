@@ -9,14 +9,16 @@ public class OptionUIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ESCUI.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        ESCUI.SetActive(false);
-        if (Input.GetKey(KeyCode.Escape))
+        //ESCUI.SetActive(false);
+
+        if (Input.GetKey(KeyCode.Escape) && !TalkManager.Instance.isTalk)
         {
             gameObject.SetActive(false);
             ESCUI.SetActive(true);

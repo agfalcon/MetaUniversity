@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
@@ -13,7 +14,9 @@ public class StartGame : MonoBehaviour
     public GameObject MainCharacter;
     public TMP_InputField nameField;
     public Animator nameFieldAnim;
+    public PostProcessVolume ppv;
     UIData uiData;
+
     public void GameStart()
     {
         if (nameField.text == "")
@@ -31,6 +34,7 @@ public class StartGame : MonoBehaviour
         PlayerUI.SetActive(true);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        ppv.enabled = false;
 
         Invoke(nameof(CameraRotateEnabled), 1f);
 

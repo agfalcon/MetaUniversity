@@ -350,6 +350,7 @@ public class TalkManager : MonoBehaviour
                 {
                     skipText.text = "대화종료(Space bar)";
                     isQuestTalkLast = true;
+                    npc.questionMark.SetActive(false);
                 }
                 else // 기본 NPC의 대화가 마지막인 경우
                 {
