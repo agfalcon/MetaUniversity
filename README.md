@@ -82,8 +82,8 @@ https://www.youtube.com/watch?v=v5l_IptxKSk
 	- 야외 공연장 구역, 버스정류장, 라운지, 학생회관 구역, 테크노관 건물, 기숙사 건물, 
 	건물 외부/내부 세부 구조물 구현
 	- 팀 로고, 게임 로고 제작
-	- 사용 설명서 ui 구현
-	- WebGL 구축 및 관리
+	- 사용자 메뉴얼 관리
+	- AWS S3 WebGL 구축 및 관리
 	- Git 관리, Readme 작성 
 
 #### 한선재 [HSunJ]
